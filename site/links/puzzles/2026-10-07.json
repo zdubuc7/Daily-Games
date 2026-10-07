@@ -16,15 +16,16 @@
    "v": "2026-10-07"
   },
   {
-   "course": "ladder",
-   "tee": "leg",
-   "pin": "web",
+   "course": "marvel",
+   "tee": "Happy Hogan",
+   "pin": "Hogun",
    "ob": [
-    "let",
-    "lee"
+    "Nick Fury",
+    "Bruce Banner",
+    "Steve Rogers"
    ],
-   "shortest": 3,
-   "par": 5,
+   "shortest": 2,
+   "par": 4,
    "v": "2026-10-07"
   },
   {
@@ -47,6 +48,18 @@
    "ob": [],
    "shortest": 2,
    "par": 4,
+   "v": "2026-10-07"
+  },
+  "1": {
+   "course": "ladder",
+   "tee": "leg",
+   "pin": "web",
+   "ob": [
+    "let",
+    "lee"
+   ],
+   "shortest": 3,
+   "par": 5,
    "v": "2026-10-07"
   }
  }
