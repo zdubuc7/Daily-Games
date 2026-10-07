@@ -85,3 +85,5 @@ The wrench icon in the game opens testing tools: swap the current hole to a fres
   The next run regenerates that future day. Par is computed for you.
 - **Rule on a disputed compound:** add it to `compound-extra.txt` or `compound-reject.txt`, then rebuild `compound`.
 - **Edit any fixed list:** see the files in `tools/links/sources/`, then rebuild that course.
+
+test
