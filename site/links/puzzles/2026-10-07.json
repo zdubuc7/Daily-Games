@@ -3,16 +3,12 @@
  "number": 1,
  "holes": [
   {
-   "course": "marvel",
-   "tee": "Happy Hogan",
-   "pin": "Nakia",
-   "ob": [
-    "Nick Fury",
-    "Bruce Banner",
-    "Steve Rogers"
-   ],
-   "shortest": 2,
-   "par": 4,
+   "course": "smash",
+   "tee": "Chewbacca",
+   "pin": "Venom",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
    "v": "2026-10-07"
   },
   {
