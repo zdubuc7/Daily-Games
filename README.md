@@ -76,7 +76,13 @@ node tools/links/generate.mjs --date 2026-10-20 --force   # regenerate one day
 
 ### Testing tools
 
-The wrench icon in the game opens testing tools: swap the current hole to a fresh random puzzle on any course, replay a hole, or reset the whole day (progress and swaps live only in that browser). Remove the button from `site/links/index.html` before launch if you don't want friends to see it.
+Menu → Testing tools (password `mulligan`, set by `TOOLS_PASS_SHA256` in `site/links/app.js`).
+
+- **Change course / restore originals — for everyone.** The tools commit the edited `site/links/puzzles/<date>.json` straight to `main` through the GitHub API, which triggers the deploy workflow, so every player gets the change after about 1–2 minutes. The original hole is kept in the file (`original`) so it can be restored. Players who had started a changed hole start it fresh.
+  This needs a fine-grained GitHub token (github.com → Settings → Developer settings → Fine-grained tokens) limited to this repo with **Contents: Read and write**. Paste it into the tools once; it's stored only in that browser.
+- **Replay this hole / reset my progress** only affect your own browser.
+
+The password only keeps casual players out — it's a static site, so it isn't real security. The token is what actually protects the repo.
 
 ### Host controls (optional)
 
@@ -85,5 +91,3 @@ The wrench icon in the game opens testing tools: swap the current hole to a fres
   The next run regenerates that future day. Par is computed for you.
 - **Rule on a disputed compound:** add it to `compound-extra.txt` or `compound-reject.txt`, then rebuild `compound`.
 - **Edit any fixed list:** see the files in `tools/links/sources/`, then rebuild that course.
-
-test

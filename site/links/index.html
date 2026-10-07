@@ -191,17 +191,35 @@
     <div class="dlg-body">
       <div class="eyebrow">For testing</div>
       <h2>Testing tools</h2>
-      <h3>Change course</h3>
-      <p class="muted small">Swap the current hole for a fresh random puzzle on any course.</p>
+      <form id="tools-lock" class="tools-lock" autocomplete="off">
+        <p class="muted small">Enter the testing password.</p>
+        <div class="tool-row">
+          <input id="tools-pass" type="password" aria-label="Testing password" placeholder="Password">
+          <button class="btn primary" type="submit">Unlock</button>
+        </div>
+        <p class="muted small" id="tools-lock-msg"></p>
+        <button class="btn ghost wide" data-close type="button">Close</button>
+      </form>
+      <div id="tools-body" hidden>
+      <h3>GitHub access</h3>
+      <p class="muted small" id="tool-token-status"></p>
+      <div class="tool-row">
+        <input id="tool-token" type="password" aria-label="GitHub token" placeholder="Paste a GitHub token" autocomplete="off">
+        <button class="btn ghost" id="tool-token-save" type="button">Save</button>
+      </div>
+      <h3>Change course — for everyone</h3>
+      <p class="muted small">Swaps this hole for a fresh random puzzle on any course and publishes it to the site. Everyone gets the new hole after the site redeploys (about 1–2 minutes).</p>
       <div class="tool-row">
         <select id="tool-course" aria-label="Course"></select>
         <button class="btn primary" id="tool-swap" type="button">Swap hole</button>
       </div>
+      <button class="btn ghost wide" id="tool-restore" type="button">Restore today's original holes (for everyone)</button>
       <p class="muted small" id="tool-status"></p>
-      <h3>Reset</h3>
+      <h3>Just this browser</h3>
       <button class="btn ghost wide" id="tool-reset-hole" type="button">Replay this hole</button>
-      <button class="btn ghost wide" id="tool-reset" type="button">Reset today's round (and course swaps)</button>
+      <button class="btn ghost wide" id="tool-reset" type="button">Reset my progress for today</button>
       <button class="btn ghost wide" data-close type="button">Close</button>
+      </div>
     </div>
   </dialog>
 

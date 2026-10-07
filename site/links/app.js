@@ -23,7 +23,15 @@ const store = {
   keys() { try { return Object.keys(localStorage); } catch { return []; } },
   del(k) { try { localStorage.removeItem(k); } catch { /* ignore */ } },
 };
-const TEST_KEY = 'links:test:' + DATE; // testing tool: holes swapped to other courses
+// Testing tools publish puzzle changes straight to the repo (GitHub Contents API), which
+// redeploys the site, so a swapped hole changes for everyone. The token lives only in the
+// tester's browser.
+const REPO = 'zdubuc7/Daily-Games';
+const PUZZLE_PATH = `site/links/puzzles/${DATE}.json`;
+const TOKEN_KEY = 'links:ghToken';
+// Temporary gate for the testing tools. Only a hash ships, but this is a static site, so it keeps
+// casual players out rather than being real security. Change it with: printf 'newpass' | shasum -a 256
+const TOOLS_PASS_SHA256 = '2ad1249f8c142d703617276c685c35379a51883a31604ade3bad084c967eb239';
 
 // ---- state --------------------------------------------------------------------
 let puzzle;            // { date, number, holes: [...] }
@@ -34,6 +42,8 @@ let H;                 // runtime for the current hole: { c, tee, pin, ob:Set, d
 let busy = false;
 let scene;
 let suggestions = [], sel = 0;
+
+const holeSig = (h) => `${h.course}|${h.tee}|${h.pin}`;
 
 function blankSave() {
   return { v: 1, mulliganUsed: false, holes: puzzle.holes.map(() => ({ status: 'new', strokes: 0, chain: [], log: [], score: null })) };
@@ -60,14 +70,19 @@ async function boot() {
     const res = await fetch(`puzzles/${DATE}.json`, { cache: 'no-cache' });
     if (!res.ok) throw new Error('missing');
     puzzle = await res.json();
-    const swaps = store.get(TEST_KEY) || {};
-    for (const [i, hole] of Object.entries(swaps)) if (puzzle.holes[i]) puzzle.holes[i] = hole;
   } catch {
     $('#loading').textContent = 'No round posted for today yet — check back soon.';
     return;
   }
   save = store.get('links:' + DATE);
   if (!save || save.holes?.length !== puzzle.holes.length) save = blankSave();
+  // If a hole was changed after you started it (testing tools), start that hole fresh.
+  puzzle.holes.forEach((h, i) => {
+    const s = save.holes[i];
+    if (s.sig && s.sig !== holeSig(h)) resetHoleSave(i, false);
+    save.holes[i].sig = holeSig(h);
+  });
+  persist();
   $('#round-label').textContent = `#${puzzle.number} · ${prettyDate(DATE)}${DATE < today ? ' (archive)' : DATE > today ? ' (preview)' : ''}`;
   if (!store.get('links:seenHelp')) {
     store.set('links:seenHelp', 1);
@@ -132,8 +147,9 @@ function render() {
   $('#holes').innerHTML = puzzle.holes.map((hh, i) => {
     const ss = save.holes[i];
     const cls = ss.status === 'done' ? (ss.score < 0 ? 'under' : ss.score > 0 ? 'over' : 'par') : '';
-    const tip = ss.status === 'done' ? `${scoreName(ss.score)} ${fmtRel(ss.score)}` : ss.status === 'play' ? `${ss.strokes} strokes so far` : `Par ${hh.par}`;
-    return `<button type="button" class="${i === cur ? 'active' : ''} ${cls}" data-hole="${i}" title="Hole ${i + 1}: ${esc(courseName(hh))} — ${tip}">${i + 1}</button>`;
+    const locked = !holeUnlocked(i);
+    const tip = locked ? `Finish hole ${i} first` : ss.status === 'done' ? `${scoreName(ss.score)} ${fmtRel(ss.score)}` : ss.status === 'play' ? `${ss.strokes} strokes so far` : `Par ${hh.par}`;
+    return `<button type="button" class="${i === cur ? 'active' : ''} ${cls} ${locked ? 'locked' : ''}" data-hole="${i}" title="Hole ${i + 1}: ${esc(courseName(hh))} — ${tip}" ${locked ? 'aria-disabled="true"' : ''}>${locked ? '🔒' : i + 1}</button>`;
   }).join('');
   $('#pod-hole').textContent = `${cur + 1}/${puzzle.holes.length}`;
   const { total, done: holesDone } = totals();
@@ -171,6 +187,12 @@ function render() {
   swing.disabled = busy;
   swing.classList.toggle('result', done);
   swing.textContent = done ? 'Result' : scene.onGreen() ? 'Putt' : 'Swing';
+}
+
+// Holes are played in order: a hole opens once every hole before it is finished.
+function holeUnlocked(i) {
+  for (let k = 0; k < i; k++) if (save.holes[k].status !== 'done') return false;
+  return true;
 }
 
 // Prompt card + dock step aside while a shot plays, Krillion-style.
@@ -407,7 +429,34 @@ function showBrowse() {
 }
 
 // ---- testing tools ----------------------------------------------------------------------
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function toolsUnlocked() { return store.get('links:toolsUnlocked') === TOOLS_PASS_SHA256; }
+
+async function unlockTools(e) {
+  e.preventDefault();
+  const pass = $('#tools-pass').value;
+  let ok = false;
+  try { ok = (await sha256(pass)) === TOOLS_PASS_SHA256; } catch { ok = false; }
+  if (!ok) { $('#tools-lock-msg').textContent = 'Wrong password.'; $('#tools-pass').select(); return; }
+  store.set('links:toolsUnlocked', TOOLS_PASS_SHA256);
+  $('#tools-pass').value = '';
+  showTools();
+}
+
 function showTools() {
+  const unlocked = toolsUnlocked();
+  $('#tools-lock').hidden = unlocked;
+  $('#tools-body').hidden = !unlocked;
+  $('#tools-lock-msg').textContent = '';
+  if (!unlocked) {
+    if (!$('#dlg-tools').open) $('#dlg-tools').showModal();
+    setTimeout(() => $('#tools-pass').focus(), 30);
+    return;
+  }
   const sel = $('#tool-course');
   const names = { marvel: 'Cinematic Universe (Marvel)', starwars: 'Cinematic Universe (Star Wars)' };
   sel.innerHTML = Object.entries(COURSES)
@@ -416,32 +465,105 @@ function showTools() {
     .map(([id, name]) => `<option value="${id}" ${H && H.h.course === id ? 'selected' : ''}>${esc(name)}</option>`).join('');
   $('#tool-swap').textContent = `Swap hole ${cur + 1}`;
   $('#tool-status').textContent = '';
-  $('#dlg-tools').showModal();
+  const hasToken = !!store.get(TOKEN_KEY);
+  $('#tool-token-status').innerHTML = hasToken
+    ? 'Token saved in this browser. Paste a new one to replace it, or save an empty box to remove it.'
+    : `Changes for everyone are committed to <b>${REPO}</b>. Paste a fine-grained GitHub token with <b>Contents: Read and write</b> on that repo.`;
+  $('#tool-swap').disabled = !hasToken;
+  $('#tool-restore').disabled = !hasToken;
+  if (!$('#dlg-tools').open) $('#dlg-tools').showModal();
+}
+
+// ---- publishing puzzle edits to GitHub ----
+const b64encode = (str) => { const bytes = new TextEncoder().encode(str); let bin = ''; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin); };
+const b64decode = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+
+async function github(method, path, body) {
+  const token = store.get(TOKEN_KEY);
+  if (!token) throw new Error('Paste a GitHub token first (see GitHub access above).');
+  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method,
+    headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    body: body ? JSON.stringify(body) : undefined,
+    cache: 'no-store',
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(res.status === 401 ? 'GitHub rejected the token.' : res.status === 404 ? 'Token can\'t see the repo (needs Contents: read & write on ' + REPO + ').' : json.message || `GitHub error ${res.status}`);
+  return json;
+}
+
+// Load the day's puzzle file from the repo, let `edit` change it, and commit it to main.
+async function publishDay(message, edit) {
+  const file = await github('GET', `${PUZZLE_PATH}?ref=main`);
+  const day = JSON.parse(b64decode(file.content));
+  edit(day);
+  await github('PUT', PUZZLE_PATH, { message, content: b64encode(JSON.stringify(day, null, 1) + '\n'), sha: file.sha, branch: 'main' });
+  return day;
+}
+
+function applyDay(day) {
+  puzzle.holes = day.holes;
+  puzzle.holes.forEach((h, i) => {
+    if (save.holes[i].sig !== holeSig(h)) resetHoleSave(i, false);
+    save.holes[i].sig = holeSig(h);
+  });
+  persist();
 }
 
 async function swapCourse() {
   const id = $('#tool-course').value;
-  $('#tool-status').textContent = 'Building a new hole…';
+  const status = $('#tool-status');
+  status.textContent = 'Building a new hole…';
   try {
     const c = await loadCourse({ course: id, v: '' });
     await new Promise((r) => setTimeout(r, 20));
     const hole = generateHole(c, Math.random, { lo: 2, hi: 3 });
-    const swaps = store.get(TEST_KEY) || {};
-    swaps[cur] = hole;
-    store.set(TEST_KEY, swaps);
-    puzzle.holes[cur] = hole;
-    resetHoleSave(cur);
+    status.textContent = `Publishing ${courseName(hole)}: ${hole.tee} → ${hole.pin}…`;
+    const day = await publishDay(`The Links: hole ${cur + 1} on ${DATE} → ${courseName(hole)} (testing tools)`, (d) => {
+      d.original = d.original || {};
+      if (!(cur in d.original)) d.original[cur] = d.holes[cur];
+      d.holes[cur] = hole;
+    });
+    applyDay(day);
     $('#dlg-tools').close();
     openHole(cur, { card: true });
+    scene.toast('Published — live for everyone in ~1–2 min', 'good');
   } catch (e) {
-    $('#tool-status').textContent = `Couldn't build that hole: ${e.message}`;
+    status.textContent = `Couldn't swap: ${e.message}`;
   }
 }
 
-function resetHoleSave(i) {
-  if (save.holes[i].log.includes('m')) save.mulliganUsed = false;
-  save.holes[i] = { status: 'new', strokes: 0, chain: [], log: [], score: null };
-  persist();
+async function restoreOriginals() {
+  const status = $('#tool-status');
+  status.textContent = 'Restoring the original holes…';
+  try {
+    let changed = 0;
+    const day = await publishDay(`The Links: restore original holes for ${DATE} (testing tools)`, (d) => {
+      for (const [i, h] of Object.entries(d.original || {})) { d.holes[i] = h; changed++; }
+      delete d.original;
+    });
+    if (!changed) { status.textContent = 'Nothing to restore — today has no swapped holes.'; return; }
+    applyDay(day);
+    $('#dlg-tools').close();
+    const first = save.holes.findIndex((x) => x.status !== 'done');
+    openHole(first === -1 ? 0 : first, { card: first !== -1 });
+    scene.toast('Originals restored — live in ~1–2 min', 'good');
+  } catch (e) {
+    status.textContent = `Couldn't restore: ${e.message}`;
+  }
+}
+
+function saveToken() {
+  const v = $('#tool-token').value.trim();
+  if (v) store.set(TOKEN_KEY, v); else store.del(TOKEN_KEY);
+  $('#tool-token').value = '';
+  showTools();
+}
+
+function resetHoleSave(i, write = true) {
+  if (save.holes[i].log?.includes('m')) save.mulliganUsed = false;
+  save.holes[i] = { status: 'new', strokes: 0, chain: [], log: [], score: null, sig: save.holes[i].sig };
+  if (write) persist();
 }
 
 function replayHole() {
@@ -452,7 +574,6 @@ function replayHole() {
 
 function resetRound() {
   store.del('links:' + DATE);
-  store.del(TEST_KEY);
   location.reload();
 }
 
@@ -521,6 +642,11 @@ function bindUI() {
     const b = e.target.closest('[data-hole]');
     if (!b || busy) return;
     const i = +b.dataset.hole;
+    if (!holeUnlocked(i)) {
+      const need = save.holes.findIndex((x) => x.status !== 'done');
+      scene.toast(`Finish hole ${need + 1} first`, 'meh');
+      return;
+    }
     if (i === cur) { if (save.holes[i].status === 'done') showResult(i); return; }
     openHole(i, { card: save.holes[i].status === 'new' });
   });
@@ -533,6 +659,9 @@ function bindUI() {
   $('#m-round').addEventListener('click', menu(showRound));
   $('#m-tools').addEventListener('click', menu(showTools));
   $('#tool-swap').addEventListener('click', swapCourse);
+  $('#tool-restore').addEventListener('click', restoreOriginals);
+  $('#tool-token-save').addEventListener('click', saveToken);
+  $('#tools-lock').addEventListener('submit', unlockTools);
   $('#tool-reset-hole').addEventListener('click', replayHole);
   $('#tool-reset').addEventListener('click', resetRound);
   // keep the camera framing the open area between the floating HUD panels

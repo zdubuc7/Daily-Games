@@ -4,7 +4,7 @@
 //
 // World units: the cup sits at (0, 0) and the tee is straight "down" the screen (positive y).
 // Hole length comes from par; the ball's spots ("links to go") are spread evenly along it.
-import { renderTerrain } from './terrain.js';
+import { Terrain } from './terrain.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const YPU = 1.38;          // yards per world unit
@@ -14,6 +14,9 @@ const CUT = 5;             // first cut of rough around the fairway
 const ROUGH_HW = 88;       // rough corridor half-width (woods beyond)
 const DROP_LAT = 52;       // lateral offset of a drop after going out of bounds
 const BALL_R = 2.1;
+const TILE = 32;           // sharp terrain tiles are TILE x TILE world units
+const TILE_BLEED = 0.75;   // tiles overlap slightly so no seams show
+const MAX_TILES = 80;
 
 const el = (tag, attrs = {}, parent) => {
   const e = document.createElementNS(NS, tag);
@@ -110,7 +113,7 @@ export class Scene {
     this.pos = { x: 0, y: 0 };
     this.aim = 0;
     this.rand = Math.random;
-    if (window.ResizeObserver) new ResizeObserver(() => this.setCam(this.cam)).observe(this.wrap);
+    if (window.ResizeObserver) new ResizeObserver(() => this.refreshTiles()).observe(this.wrap);
   }
 
   buildDefs() {
@@ -330,12 +333,20 @@ export class Scene {
       });
     }
 
-    // paint the scenery
-    const { canvas } = renderTerrain(L);
-    canvas.style.width = `${L.w}px`;
-    canvas.style.height = `${L.h}px`;
-    this.terrainBox.replaceChildren(canvas);
-    this.canvas = canvas;
+    // paint the scenery: a whole-hole base layer, plus sharp tiles streamed in around the camera
+    this.terrain = new Terrain(L);
+    const base = this.terrain.renderBase();
+    base.className = 'base';
+    this.world = document.createElement('div');
+    this.world.className = 'terrain-world';
+    this.world.style.width = `${L.w}px`;
+    this.world.style.height = `${L.h}px`;
+    this.tileLayer = document.createElement('div');
+    this.world.append(base, this.tileLayer);
+    this.terrainBox.replaceChildren(this.world);
+    this.tiles = new Map();
+    this.wanted = [];
+    this.hiPpu = this.computeHiPpu();
 
     // tee peg (vector, so it can disappear when the ball is struck)
     this.teePeg = el('circle', { cx: L.tee.x + 0.3, cy: L.tee.y + 0.4, r: 0.7, fill: '#fff', stroke: 'rgba(0,0,0,.3)', 'stroke-width': 0.15 }, this.decor);
@@ -509,10 +520,88 @@ export class Scene {
     const vb = `${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}`;
     this.svg.setAttribute('viewBox', vb);
     this.top.setAttribute('viewBox', vb);
-    if (this.canvas && this.L) {
+    if (this.world && this.L) {
       const s = W / vw;
-      this.canvas.style.transform = `translate3d(${((this.L.x0 - vx) * s).toFixed(2)}px, ${((this.L.y0 - vy) * s).toFixed(2)}px, 0) scale(${s.toFixed(5)})`;
+      this.world.style.transform = `translate3d(${((this.L.x0 - vx) * s).toFixed(2)}px, ${((this.L.y0 - vy) * s).toFixed(2)}px, 0) scale(${s.toFixed(5)})`;
+      this.queueTiles(vx, vy, vw, vh);
     }
+  }
+
+  // ---- sharp terrain tiles ----------------------------------------------------------------
+  // Pixels per world unit needed so the course stays crisp at the closest camera zoom on this
+  // screen (device pixel ratio included). 0 = the base layer is already sharp enough.
+  computeHiPpu() {
+    if (!this.terrain) return 0;
+    const W = this.wrap.clientWidth || 360, H = this.wrap.clientHeight || 640;
+    const dpr = Math.min(3, window.devicePixelRatio || 1);
+    const closest = W / (112 * Math.sqrt(W / H)); // css px per unit at the tee-box zoom
+    const want = Math.min(20, closest * dpr);
+    return want > this.terrain.basePpu * 1.3 ? want : 0;
+  }
+
+  queueTiles(vx, vy, vw, vh) {
+    if (!this.hiPpu) return;
+    const L = this.L;
+    const i0 = Math.floor((vx - L.x0) / TILE) - 1, i1 = Math.floor((vx + vw - L.x0) / TILE) + 1;
+    const j0 = Math.floor((vy - L.y0) / TILE) - 1, j1 = Math.floor((vy + vh - L.y0) / TILE) + 1;
+    const cx = vx + vw / 2, cy = vy + vh / 2;
+    this.tileCenter = { x: cx, y: cy };
+    const want = [];
+    for (let j = Math.max(0, j0); j <= j1; j++) {
+      for (let i = Math.max(0, i0); i <= i1; i++) {
+        if (L.x0 + i * TILE > L.x0 + L.w || L.y0 + j * TILE > L.y0 + L.h) continue;
+        const k = `${i},${j}`;
+        if (this.tiles.has(k)) continue;
+        const d = Math.hypot(L.x0 + (i + 0.5) * TILE - cx, L.y0 + (j + 0.5) * TILE - cy);
+        want.push([d, k]);
+      }
+    }
+    want.sort((a, b) => a[0] - b[0]);
+    this.wanted = want.map((w) => w[1]);
+    if (this.wanted.length && !this.pumping) { this.pumping = true; requestAnimationFrame(() => this.pumpTiles()); }
+  }
+
+  pumpTiles() {
+    const t0 = performance.now();
+    while (this.wanted.length && performance.now() - t0 < 9) {
+      const k = this.wanted.shift();
+      if (!this.tiles.has(k)) this.renderTile(k);
+    }
+    if (this.wanted.length) requestAnimationFrame(() => this.pumpTiles());
+    else this.pumping = false;
+  }
+
+  renderTile(k) {
+    const L = this.L;
+    const [i, j] = k.split(',').map(Number);
+    const R = { x: L.x0 + i * TILE - TILE_BLEED, y: L.y0 + j * TILE - TILE_BLEED, w: TILE + 2 * TILE_BLEED, h: TILE + 2 * TILE_BLEED };
+    const cv = this.terrain.renderRegion(R, this.hiPpu);
+    cv.className = 'tile';
+    cv.style.left = `${R.x - L.x0}px`;
+    cv.style.top = `${R.y - L.y0}px`;
+    cv.style.width = `${R.w}px`;
+    cv.style.height = `${R.h}px`;
+    this.tileLayer.appendChild(cv);
+    this.tiles.set(k, cv);
+    if (this.tiles.size > MAX_TILES) { // forget the tiles furthest from the camera
+      const c = this.tileCenter;
+      const far = [...this.tiles.entries()].map(([key, el]) => {
+        const [a, b] = key.split(',').map(Number);
+        return [Math.hypot(L.x0 + (a + 0.5) * TILE - c.x, L.y0 + (b + 0.5) * TILE - c.y), key, el];
+      }).sort((x, y) => y[0] - x[0]);
+      for (const [, key, el] of far.slice(0, this.tiles.size - MAX_TILES)) { el.remove(); this.tiles.delete(key); }
+    }
+  }
+
+  // On resize, rebuild tiles if the needed sharpness changed.
+  refreshTiles() {
+    const ppu = this.computeHiPpu();
+    if (Math.abs(ppu - (this.hiPpu || 0)) > 1.5) {
+      this.hiPpu = ppu;
+      for (const el of this.tiles.values()) el.remove();
+      this.tiles.clear();
+    }
+    this.setCam(this.cam);
   }
 
   panTo(target, ms = 600) {

@@ -58,7 +58,7 @@ jobs:
           git config user.name "links-bot"
           git config user.email "links-bot@users.noreply.github.com"
           git add site/links/puzzles site/links/data
-          if git diff --cached --quiet; then echo "Nothing new"; else git commit -m "The Links: puzzles for $(date -u +%F)" && git push; fi
+          if git diff --cached --quiet; then echo "Nothing new"; else git commit -m "The Links: puzzles for $(date -u +%F)" && git pull --rebase origin main && git push; fi
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
