@@ -463,7 +463,7 @@ function showTools() {
     .map(([id, c]) => [id, names[id] || c.name])
     .sort((a, b) => a[1].localeCompare(b[1]))
     .map(([id, name]) => `<option value="${id}" ${H && H.h.course === id ? 'selected' : ''}>${esc(name)}</option>`).join('');
-  $('#tool-swap').textContent = `Swap hole ${cur + 1}`;
+  $('#tool-swap').textContent = `Switch all ${puzzle.holes.length} holes`;
   $('#tool-status').textContent = '';
   const hasToken = !!store.get(TOKEN_KEY);
   $('#tool-token-status').innerHTML = hasToken
@@ -510,26 +510,35 @@ function applyDay(day) {
   persist();
 }
 
+// Switch the whole day (every hole) to fresh puzzles on one course, for everyone.
 async function swapCourse() {
   const id = $('#tool-course').value;
   const status = $('#tool-status');
-  status.textContent = 'Building a new hole…';
+  const n = puzzle.holes.length;
+  status.textContent = `Building ${n} new holes…`;
   try {
     const c = await loadCourse({ course: id, v: '' });
     await new Promise((r) => setTimeout(r, 20));
-    const hole = generateHole(c, Math.random, { lo: 2, hi: 3 });
-    status.textContent = `Publishing ${courseName(hole)}: ${hole.tee} → ${hole.pin}…`;
-    const day = await publishDay(`The Links: hole ${cur + 1} on ${DATE} → ${courseName(hole)} (testing tools)`, (d) => {
+    const avoid = new Set();
+    const holes = [];
+    for (let i = 0; i < n; i++) {
+      const hole = generateHole(c, Math.random, { lo: 2, hi: 3, avoid });
+      avoid.add(hole.tee); avoid.add(hole.pin);
+      holes.push(hole);
+    }
+    const name = courseName(holes[0]);
+    status.textContent = `Publishing ${n} ${name} holes…`;
+    const day = await publishDay(`The Links: all holes on ${DATE} → ${name} (testing tools)`, (d) => {
       d.original = d.original || {};
-      if (!(cur in d.original)) d.original[cur] = d.holes[cur];
-      d.holes[cur] = hole;
+      d.holes.forEach((h, i) => { if (!(i in d.original)) d.original[i] = h; });
+      d.holes = holes;
     });
     applyDay(day);
     $('#dlg-tools').close();
-    openHole(cur, { card: true });
+    openHole(0, { card: true });
     scene.toast('Published — live for everyone in ~1–2 min', 'good');
   } catch (e) {
-    status.textContent = `Couldn't swap: ${e.message}`;
+    status.textContent = `Couldn't switch: ${e.message}`;
   }
 }
 

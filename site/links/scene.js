@@ -16,7 +16,7 @@ const DROP_LAT = 52;       // lateral offset of a drop after going out of bounds
 const BALL_R = 2.1;
 const TILE = 32;           // sharp terrain tiles are TILE x TILE world units
 const TILE_BLEED = 0.75;   // tiles overlap slightly so no seams show
-const MAX_TILES = 80;
+const MIN_TILES = 24;      // tile cache: ~2 screens' worth, at least this many
 
 const el = (tag, attrs = {}, parent) => {
   const e = document.createElementNS(NS, tag);
@@ -334,16 +334,16 @@ export class Scene {
     }
 
     // paint the scenery: a whole-hole base layer, plus sharp tiles streamed in around the camera
+    // The browser never scales the course: every frame we draw the visible part ourselves into
+    // one canvas at the screen's real pixel size (scaling layers with CSS made it blurry).
     this.terrain = new Terrain(L);
-    const base = this.terrain.renderBase();
-    base.className = 'base';
-    this.world = document.createElement('div');
-    this.world.className = 'terrain-world';
-    this.world.style.width = `${L.w}px`;
-    this.world.style.height = `${L.h}px`;
-    this.tileLayer = document.createElement('div');
-    this.world.append(base, this.tileLayer);
-    this.terrainBox.replaceChildren(this.world);
+    this.base = this.terrain.renderBase();
+    if (!this.view) {
+      this.view = document.createElement('canvas');
+      this.view.className = 'terrain-view';
+      this.viewCtx = this.view.getContext('2d');
+    }
+    this.terrainBox.replaceChildren(this.view);
     this.tiles = new Map();
     this.wanted = [];
     this.hiPpu = this.computeHiPpu();
@@ -520,10 +520,32 @@ export class Scene {
     const vb = `${vx.toFixed(2)} ${vy.toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}`;
     this.svg.setAttribute('viewBox', vb);
     this.top.setAttribute('viewBox', vb);
-    if (this.world && this.L) {
-      const s = W / vw;
-      this.world.style.transform = `translate3d(${((this.L.x0 - vx) * s).toFixed(2)}px, ${((this.L.y0 - vy) * s).toFixed(2)}px, 0) scale(${s.toFixed(5)})`;
+    if (this.base && this.L) {
+      this.viewRect = { vx, vy, vw, vh, W, H };
+      this.drawView();
       this.queueTiles(vx, vy, vw, vh);
+    }
+  }
+
+  drawView() {
+    const r = this.viewRect;
+    if (!r || !this.view) return;
+    const dpr = Math.min(3, window.devicePixelRatio || 1);
+    const cw = Math.round(r.W * dpr), ch = Math.round(r.H * dpr);
+    if (this.view.width !== cw || this.view.height !== ch) { this.view.width = cw; this.view.height = ch; }
+    const g = this.viewCtx, L = this.L;
+    const k = cw / r.vw; // device pixels per world unit
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = '#22401f';
+    g.fillRect(0, 0, cw, ch);
+    g.setTransform(k, 0, 0, k, -r.vx * k, -r.vy * k);
+    g.imageSmoothingEnabled = true;
+    g.imageSmoothingQuality = 'high';
+    g.drawImage(this.base, L.x0, L.y0, L.w, L.h);
+    for (const t of this.tiles.values()) {
+      const R = t.R;
+      if (R.x > r.vx + r.vw || R.x + R.w < r.vx || R.y > r.vy + r.vh || R.y + R.h < r.vy) continue;
+      g.drawImage(t.cv, R.x, R.y, R.w, R.h);
     }
   }
 
@@ -535,7 +557,7 @@ export class Scene {
     const W = this.wrap.clientWidth || 360, H = this.wrap.clientHeight || 640;
     const dpr = Math.min(3, window.devicePixelRatio || 1);
     const closest = W / (112 * Math.sqrt(W / H)); // css px per unit at the tee-box zoom
-    const want = Math.min(20, closest * dpr);
+    const want = Math.min(24, closest * dpr);
     return want > this.terrain.basePpu * 1.3 ? want : 0;
   }
 
@@ -546,6 +568,7 @@ export class Scene {
     const j0 = Math.floor((vy - L.y0) / TILE) - 1, j1 = Math.floor((vy + vh - L.y0) / TILE) + 1;
     const cx = vx + vw / 2, cy = vy + vh / 2;
     this.tileCenter = { x: cx, y: cy };
+    this.maxTiles = Math.max(MIN_TILES, (i1 - i0 + 1) * (j1 - j0 + 1) * 2);
     const want = [];
     for (let j = Math.max(0, j0); j <= j1; j++) {
       for (let i = Math.max(0, i0); i <= i1; i++) {
@@ -567,6 +590,7 @@ export class Scene {
       const k = this.wanted.shift();
       if (!this.tiles.has(k)) this.renderTile(k);
     }
+    this.drawView();
     if (this.wanted.length) requestAnimationFrame(() => this.pumpTiles());
     else this.pumping = false;
   }
@@ -576,20 +600,15 @@ export class Scene {
     const [i, j] = k.split(',').map(Number);
     const R = { x: L.x0 + i * TILE - TILE_BLEED, y: L.y0 + j * TILE - TILE_BLEED, w: TILE + 2 * TILE_BLEED, h: TILE + 2 * TILE_BLEED };
     const cv = this.terrain.renderRegion(R, this.hiPpu);
-    cv.className = 'tile';
-    cv.style.left = `${R.x - L.x0}px`;
-    cv.style.top = `${R.y - L.y0}px`;
-    cv.style.width = `${R.w}px`;
-    cv.style.height = `${R.h}px`;
-    this.tileLayer.appendChild(cv);
-    this.tiles.set(k, cv);
-    if (this.tiles.size > MAX_TILES) { // forget the tiles furthest from the camera
+    this.tiles.set(k, { cv, R });
+    const max = this.maxTiles || MIN_TILES;
+    if (this.tiles.size > max) { // forget the tiles furthest from the camera
       const c = this.tileCenter;
       const far = [...this.tiles.entries()].map(([key, el]) => {
         const [a, b] = key.split(',').map(Number);
         return [Math.hypot(L.x0 + (a + 0.5) * TILE - c.x, L.y0 + (b + 0.5) * TILE - c.y), key, el];
       }).sort((x, y) => y[0] - x[0]);
-      for (const [, key, el] of far.slice(0, this.tiles.size - MAX_TILES)) { el.remove(); this.tiles.delete(key); }
+      for (const [, key] of far.slice(0, this.tiles.size - max)) this.tiles.delete(key);
     }
   }
 
@@ -598,7 +617,6 @@ export class Scene {
     const ppu = this.computeHiPpu();
     if (Math.abs(ppu - (this.hiPpu || 0)) > 1.5) {
       this.hiPpu = ppu;
-      for (const el of this.tiles.values()) el.remove();
       this.tiles.clear();
     }
     this.setCam(this.cam);

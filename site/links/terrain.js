@@ -45,7 +45,38 @@ function textures() {
     for (const x of v) { lo = Math.min(lo, x); hi = Math.max(hi, x); }
     for (let i = 0; i < n * n; i++) { const c = ((v[i] - lo) / (hi - lo)) * 255; d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = c; d[i * 4 + 3] = 255; }
   });
-  TEX = { grain, mottle };
+  // Surface textures, drawn 1 texture pixel = 1 screen pixel so they stay crisp at any zoom.
+  // Each is tileable: strokes near an edge are repeated on the opposite side.
+  const surface = (n, { blades = 0, len = [1, 3], speck = 40, wide = 1, bias = 0, grains = 0 }) => {
+    const c = document.createElement('canvas');
+    c.width = c.height = n;
+    const g = c.getContext('2d');
+    const img = g.createImageData(n, n);
+    for (let i = 0; i < n * n; i++) { const v = 128 + (Math.random() - 0.5) * speck; img.data[i * 4] = img.data[i * 4 + 1] = img.data[i * 4 + 2] = v; img.data[i * 4 + 3] = 255; }
+    g.putImageData(img, 0, 0);
+    g.lineCap = 'round';
+    for (let i = 0; i < blades; i++) {
+      const x = Math.random() * n, y = Math.random() * n, a = bias + (Math.random() - 0.5) * (bias ? 1.2 : Math.PI * 2);
+      const l = len[0] + Math.random() * (len[1] - len[0]), v = Math.random();
+      g.strokeStyle = v < 0.55 ? `rgba(0,0,0,${0.25 + Math.random() * 0.35})` : `rgba(255,255,255,${0.2 + Math.random() * 0.35})`;
+      g.lineWidth = wide * (0.6 + Math.random() * 0.6);
+      for (const ox of [0, -n, n]) for (const oy of [0, -n, n]) {
+        if ((ox && Math.abs(x + ox - n / 2) > n / 2 + l) || (oy && Math.abs(y + oy - n / 2) > n / 2 + l)) continue;
+        g.beginPath(); g.moveTo(x + ox, y + oy); g.lineTo(x + ox + Math.cos(a) * l, y + oy + Math.sin(a) * l); g.stroke();
+      }
+    }
+    for (let i = 0; i < grains; i++) {
+      const x = Math.random() * n, y = Math.random() * n, r = 0.5 + Math.random() * 1.1;
+      g.fillStyle = Math.random() < 0.6 ? `rgba(0,0,0,${0.15 + Math.random() * 0.3})` : `rgba(255,255,255,${0.2 + Math.random() * 0.4})`;
+      g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+    }
+    return c;
+  };
+  const rough = surface(384, { blades: 16000, len: [2.5, 7], speck: 50, wide: 1.1 });
+  const turf = surface(384, { blades: 22000, len: [1, 3], speck: 36, wide: 0.9, bias: -1.57 });
+  const putting = surface(384, { blades: 14000, len: [0.8, 1.8], speck: 22, wide: 0.7 });
+  const sandTex = surface(384, { speck: 70, grains: 9000 });
+  TEX = { grain, mottle, rough, turf, putting, sand: sandTex };
   return TEX;
 }
 
@@ -193,6 +224,11 @@ export class Terrain {
     // texture scales are in world units, so every resolution shows the same grain
     const grainFine = pattern(T.grain, 0.15, 0);
     const grainMid = pattern(T.grain, 0.32, 1);
+    const px = 1 / ppu; // one texture pixel per canvas pixel
+    const roughTex = pattern(T.rough, px, 0);
+    const turfTex = pattern(T.turf, px, 1);
+    const puttTex = pattern(T.putting, px, 2);
+    const sandTex = pattern(T.sand, px, 3);
     const mottleBig = pattern(T.mottle, 3.2, 2);
     const mottleSmall = pattern(T.mottle, 1.1, 3);
     const clipRect = (bb) => {
@@ -225,7 +261,7 @@ export class Terrain {
       g.fill(this.corridor);
       texture(this.corridor, mottleBig, 0.55, 'soft-light');
       texture(this.corridor, mottleSmall, 0.35, 'soft-light');
-      texture(this.corridor, grainMid, 0.55, 'overlay');
+      texture(this.corridor, roughTex, 0.7, 'overlay');
       g.save(); g.clip(this.corridor);
       for (const t of this.tufts) {
         if (!near(t.x, t.y, 4, R)) continue;
@@ -251,7 +287,7 @@ export class Terrain {
       g.strokeStyle = 'rgba(0,0,0,.18)'; g.lineWidth = 6.6; g.translate(0.6, 0.6); g.stroke(cart); g.translate(-0.6, -0.6);
       g.strokeStyle = '#9d9786'; g.lineWidth = 5.6; g.stroke(cart);
       g.strokeStyle = '#d6d0bf'; g.lineWidth = 4.6; g.stroke(cart);
-      g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.6; g.strokeStyle = grainFine; g.lineWidth = 4.6; g.stroke(cart);
+      g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.6; g.strokeStyle = sandTex; g.lineWidth = 4.6; g.stroke(cart);
       g.globalCompositeOperation = 'source-over'; g.globalAlpha = 0.25; g.strokeStyle = '#8a8474'; g.lineWidth = 0.18;
       for (let i = 0; i < L.cartPath.length - 1; i++) { // expansion joints
         const a = L.cartPath[i], b = L.cartPath[i + 1];
@@ -270,7 +306,7 @@ export class Terrain {
       g.fillStyle = hsl(99, 42, 37);
       g.fill(this.cut);
       texture(this.cut, mottleSmall, 0.3, 'soft-light');
-      texture(this.cut, grainMid, 0.35);
+      texture(this.cut, roughTex, 0.5);
       const fair = this.fair;
       g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 1.2 * ppu; g.fillStyle = hsl(96, 47, 45); g.fill(fair); g.restore();
       g.save(); g.clip(fair);
@@ -283,7 +319,7 @@ export class Terrain {
       }
       g.restore();
       texture(fair, mottleSmall, 0.22, 'soft-light');
-      texture(fair, grainFine, 0.28);
+      texture(fair, turfTex, 0.5);
       g.save(); g.strokeStyle = 'rgba(10,40,5,.18)'; g.lineWidth = 0.5; g.stroke(fair); g.restore();
       for (const d of this.divots) {
         if (!near(d.x, d.y, 2, R)) continue;
@@ -354,7 +390,7 @@ export class Terrain {
       const grad = g.createRadialGradient(s.x - s.rx * 0.2, s.y - s.ry * 0.3, 0, s.x, s.y, Math.max(s.rx, s.ry) * 1.1);
       grad.addColorStop(0, '#f3e6bf'); grad.addColorStop(1, '#d9c27f');
       g.fillStyle = grad; g.fill(path);
-      texture(path, grainFine, 0.55);
+      texture(path, sandTex, 0.65);
       texture(path, mottleSmall, 0.25, 'soft-light');
       g.save(); g.clip(path);
       g.translate(s.x, s.y); g.rotate((s.angle * Math.PI) / 180 + 0.3);
@@ -382,7 +418,7 @@ export class Terrain {
         g.restore();
       }
       g.restore();
-      texture(teePath, grainFine, 0.3);
+      texture(teePath, turfTex, 0.5);
       for (const s of [-1, 1]) {
         const mx = t.x + s * 12, my = t.y - 6;
         g.save(); g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 0.8 * ppu; g.shadowOffsetX = 0.7 * ppu; g.shadowOffsetY = 0.8 * ppu;
@@ -397,7 +433,7 @@ export class Terrain {
     if (vis(this.collar)) {
       g.fillStyle = hsl(98, 44, 41);
       g.fill(this.collar);
-      texture(this.collar, grainFine, 0.3);
+      texture(this.collar, turfTex, 0.45);
       const green = this.green;
       g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 1.5 * ppu;
       const gg = g.createRadialGradient(L.green.x - 8, L.green.y - 10, 2, L.green.x, L.green.y, 42);
@@ -412,7 +448,7 @@ export class Terrain {
       }
       g.restore();
       texture(green, mottleSmall, 0.12, 'soft-light');
-      texture(green, grainFine, 0.14);
+      texture(green, puttTex, 0.32);
       g.save(); g.strokeStyle = 'rgba(10,40,5,.25)'; g.lineWidth = 0.35; g.stroke(green); g.restore();
       g.save(); g.strokeStyle = 'rgba(0,0,0,.22)'; g.lineWidth = 0.45; g.lineCap = 'round';
       g.beginPath(); g.moveTo(0, 0); g.lineTo(12, 7); g.stroke();
@@ -450,7 +486,7 @@ export class Terrain {
       g.drawImage(tr.sprite, tr.x - tr.size / 2, tr.y - tr.size / 2, tr.size, tr.size);
     }
     // a final, very light grain pass over everything
-    g.save(); g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.16; g.fillStyle = grainFine; g.fillRect(R.x, R.y, R.w, R.h); g.restore();
+    g.save(); g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.12; g.fillStyle = roughTex; g.fillRect(R.x, R.y, R.w, R.h); g.restore();
   }
 }
 
@@ -464,7 +500,7 @@ export function renderTerrain(L) {
 // A canopy is a lumpy dome of leaf clumps. Each pixel gets a height from that dome + clump noise,
 // a surface normal from the height field, and is lit by the sun (top-left, high). Low spots between
 // clumps fall into shade, and the rim breaks up into ragged leaves.
-const SPRITE = 256, SR = 116; // big enough to stay sharp in the high-res tiles
+const SPRITE = 384, SR = 174; // big enough to stay sharp in the high-res tiles
 const PALETTES = {
   lush:    [[20, 44, 18], [52, 96, 36], [132, 172, 76]],
   yellow:  [[34, 50, 16], [84, 110, 38], [170, 186, 92]],

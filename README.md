@@ -78,7 +78,7 @@ node tools/links/generate.mjs --date 2026-10-20 --force   # regenerate one day
 
 Menu → Testing tools (password `mulligan`, set by `TOOLS_PASS_SHA256` in `site/links/app.js`).
 
-- **Change course / restore originals — for everyone.** The tools commit the edited `site/links/puzzles/<date>.json` straight to `main` through the GitHub API, which triggers the deploy workflow, so every player gets the change after about 1–2 minutes. The original hole is kept in the file (`original`) so it can be restored. Players who had started a changed hole start it fresh.
+- **Change course (switches every hole that day) / restore originals — for everyone.** The tools commit the edited `site/links/puzzles/<date>.json` straight to `main` through the GitHub API, which triggers the deploy workflow, so every player gets the change after about 1–2 minutes. The original hole is kept in the file (`original`) so it can be restored. Players who had started a changed hole start it fresh.
   This needs a fine-grained GitHub token (github.com → Settings → Developer settings → Fine-grained tokens) limited to this repo with **Contents: Read and write**. Paste it into the tools once; it's stored only in that browser.
 - **Replay this hole / reset my progress** only affect your own browser.
 

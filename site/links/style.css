@@ -204,11 +204,7 @@ button { font: inherit; color: inherit; }
 /* scene: the whole viewport */
 .scene-wrap { position: fixed; inset: 0; overflow: hidden; background: #22401f; }
 .terrain { position: absolute; inset: 0; overflow: hidden; }
-.terrain-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
-.terrain-world > canvas.base { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-.terrain-world > div { position: absolute; inset: 0; }
-.terrain-world .tile { position: absolute; animation: tile-in .3s ease-out; }
-@keyframes tile-in { from { opacity: 0; } }
+.terrain-view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .scene { position: absolute; inset: 0; z-index: 1; display: block; width: 100%; height: 100%; background: transparent; }
 .scene-top { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
 .scene-wrap::after { /* soft vignette + morning light */
