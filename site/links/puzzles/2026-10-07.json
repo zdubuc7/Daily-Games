@@ -4,32 +4,36 @@
  "holes": [
   {
    "course": "smash",
-   "tee": "Chewbacca",
-   "pin": "Venom",
-   "ob": [],
-   "shortest": 3,
-   "par": 5,
-   "v": "2026-10-07"
-  },
-  {
-   "course": "marvel",
-   "tee": "Happy Hogan",
-   "pin": "Hogun",
+   "tee": "Captain America",
+   "pin": "Chun-Li",
    "ob": [
-    "Nick Fury",
-    "Bruce Banner",
-    "Steve Rogers"
+    "Akuma",
+    "Wolverine",
+    "Spider-Man"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "rhyme",
-   "tee": "hours",
-   "pin": "disease",
+   "course": "smash",
+   "tee": "Frieza",
+   "pin": "Nami",
    "ob": [
-    "superpowers"
+    "Monkey D. Luffy",
+    "Roronoa Zoro",
+    "Sanji"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "smash",
+   "tee": "Boba Fett",
+   "pin": "Betsy Braddock",
+   "ob": [
+    "Akuma"
    ],
    "shortest": 3,
    "par": 5,
@@ -53,6 +57,17 @@
    "ob": [
     "let",
     "lee"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  "2": {
+   "course": "rhyme",
+   "tee": "hours",
+   "pin": "disease",
+   "ob": [
+    "superpowers"
    ],
    "shortest": 3,
    "par": 5,
