@@ -1,0 +1,40 @@
+{
+ "date": "2026-10-25",
+ "number": 19,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "war",
+   "pin": "safe",
+   "ob": [
+    "house",
+    "head"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "hole",
+   "pin": "post",
+   "ob": [
+    "cole",
+    "lost",
+    "mole"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "babies",
+   "pin": "appear",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

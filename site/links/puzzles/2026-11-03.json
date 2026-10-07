@@ -1,0 +1,44 @@
+{
+ "date": "2026-11-03",
+ "number": 28,
+ "holes": [
+  {
+   "course": "hollywood",
+   "tee": "Viggo Mortensen",
+   "pin": "Jeffrey Tambor",
+   "ob": [
+    "Brad Pitt",
+    "Anthony Hopkins",
+    "Scarlett Johansson"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "primetime",
+   "tee": "Bodyguard",
+   "pin": "Chuck",
+   "ob": [
+    "Firefly",
+    "Green Wing"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "starwars",
+   "tee": "Darth Vader",
+   "pin": "Rey",
+   "ob": [
+    "C-3PO",
+    "R2-D2",
+    "Leia"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

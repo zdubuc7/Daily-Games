@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-01",
+ "number": 26,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "wild",
+   "pin": "moon",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "sat",
+   "pin": "kit",
+   "ob": [
+    "pat",
+    "tat",
+    "hat"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "thought",
+   "pin": "bread",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

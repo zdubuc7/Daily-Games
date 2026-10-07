@@ -1,0 +1,41 @@
+{
+ "date": "2026-10-30",
+ "number": 24,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Michael Jackson",
+   "pin": "Kesha",
+   "ob": [
+    "Frank Sinatra",
+    "Rod Stewart",
+    "Barbra Streisand"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Christina Aguilera",
+   "pin": "Taylor Swift",
+   "ob": [
+    "Nicki Minaj",
+    "Pitbull",
+    "T-Pain"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Bee Gees",
+   "pin": "Charles Aznavour",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "date": "2026-10-07",
+ "number": 1,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "snow",
+   "pin": "free",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "leg",
+   "pin": "web",
+   "ob": [
+    "let",
+    "lee"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "hours",
+   "pin": "disease",
+   "ob": [
+    "superpowers"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

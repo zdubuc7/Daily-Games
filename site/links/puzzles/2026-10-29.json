@@ -1,0 +1,38 @@
+{
+ "date": "2026-10-29",
+ "number": 23,
+ "holes": [
+  {
+   "course": "states",
+   "tee": "New Mexico",
+   "pin": "Nebraska",
+   "ob": [
+    "Missouri"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "India",
+   "pin": "Kazakhstan",
+   "ob": [
+    "China",
+    "Russia"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "states",
+   "tee": "South Dakota",
+   "pin": "Colorado",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

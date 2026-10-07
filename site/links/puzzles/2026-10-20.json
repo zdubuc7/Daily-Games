@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-20",
+ "number": 14,
+ "holes": [
+  {
+   "course": "hollywood",
+   "tee": "Emily Blunt",
+   "pin": "Chris Cooper",
+   "ob": [
+    "Nicolas Cage",
+    "Robert De Niro",
+    "Bruce Willis"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "primetime",
+   "tee": "Smallville",
+   "pin": "Love, Death & Robots",
+   "ob": [
+    "Ben 10",
+    "Teen Titans Go!",
+    "Camp Lazlo!"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "starwars",
+   "tee": "Shmi Skywalker",
+   "pin": "Finn",
+   "ob": [
+    "C-3PO",
+    "R2-D2",
+    "Leia"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

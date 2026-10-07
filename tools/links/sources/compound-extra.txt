@@ -1,0 +1,3 @@
+# Extra compound words / two-word terms to accept (host rulings). One per line, e.g.:
+# fire truck
+# flypaper

@@ -1,0 +1,48 @@
+# Crossover games that do NOT count as links in the Smash course (host-editable).
+# One title prefix per line, matched case-insensitively against the game's name.
+Super Smash Bros
+Mario & Sonic
+Mario + Rabbids
+Kingdom Hearts
+Lego Dimensions
+LEGO Dimensions
+PlayStation All-Stars
+Sonic & Sega All-Stars
+Sonic & All-Stars
+Marvel vs. Capcom
+Marvel Vs. Capcom
+Capcom vs.
+SNK vs. Capcom
+Street Fighter X Tekken
+Tekken X Street Fighter
+Project X Zone
+Namco × Capcom
+Namco x Capcom
+Dissidia
+MultiVersus
+Brawlhalla
+Fortnite
+Nintendo Land
+Itadaki Street
+Fortune Street
+Cross Edge
+Jump Super Stars
+Jump Ultimate Stars
+J-Stars Victory
+Battle Stadium D.O.N
+Super Mario Maker
+Tetris 99
+Nickelodeon All-Star Brawl
+Warioware
+WarioWare
+Fire Emblem Warriors
+Hyrule Warriors
+Persona Q
+Puyo Puyo Tetris
+Minecraft
+Roblox
+Mario Kart 8
+Mario Kart Tour
+Nintendogs
+Captain Rainbow
+Smash

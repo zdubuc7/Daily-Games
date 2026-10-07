@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-24",
+ "number": 18,
+ "holes": [
+  {
+   "course": "pokedex",
+   "tee": "Primeape",
+   "pin": "Zigzagoon",
+   "ob": [
+    "Bibarel",
+    "Deerling",
+    "Sawsbuck"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "smash",
+   "tee": "Hellboy",
+   "pin": "Link",
+   "ob": [
+    "Batman",
+    "Raiden (Mortal Kombat)",
+    "The Joker"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Corphish",
+   "pin": "Misdreavus",
+   "ob": [
+    "Bibarel",
+    "Lotad",
+    "Lombre"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

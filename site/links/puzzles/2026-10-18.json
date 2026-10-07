@@ -1,0 +1,37 @@
+{
+ "date": "2026-10-18",
+ "number": 12,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "stock",
+   "pin": "blue",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "lower",
+   "pin": "roses",
+   "ob": [
+    "lover",
+    "poses",
+    "hoses"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "flying",
+   "pin": "beast",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

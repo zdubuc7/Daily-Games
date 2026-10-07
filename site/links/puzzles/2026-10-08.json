@@ -1,0 +1,39 @@
+{
+ "date": "2026-10-08",
+ "number": 2,
+ "holes": [
+  {
+   "course": "borders",
+   "tee": "Austria",
+   "pin": "Montenegro",
+   "ob": [
+    "Serbia",
+    "Hungary"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "states",
+   "tee": "Illinois",
+   "pin": "West Virginia",
+   "ob": [
+    "Missouri",
+    "Kentucky"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "Suriname",
+   "pin": "Italy",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

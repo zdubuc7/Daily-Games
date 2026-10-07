@@ -1,0 +1,43 @@
+{
+ "date": "2026-10-11",
+ "number": 5,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "date",
+   "pin": "bird",
+   "ob": [
+    "house",
+    "man"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "clay",
+   "pin": "gray",
+   "ob": [
+    "slay",
+    "bray"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "spoke",
+   "pin": "tough",
+   "ob": [
+    "smoke",
+    "stroke",
+    "soak"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

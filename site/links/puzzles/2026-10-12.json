@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-12",
+ "number": 6,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "Luke Kuechly",
+   "pin": "CeeDee Lamb",
+   "ob": [
+    "Josh McCown",
+    "Marshall Newhouse",
+    "Patrick Omameh"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Dennis Smith",
+   "pin": "Jonathan Ogden",
+   "ob": [
+    "Tim Hauck",
+    "Isaac Yiadom",
+    "Za'Darius Smith"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Terrell Davis",
+   "pin": "Adrian Wilson",
+   "ob": [
+    "Patrick Ramsey",
+    "Matthew Mulligan",
+    "Adrian Peterson"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

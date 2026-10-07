@@ -1,0 +1,79 @@
+{
+  "_note": "Cinematic Universe course. Each film lists characters who appear ON SCREEN (post-credit scenes count; voice-only roles like J.A.R.V.I.S. don't). Variants of a character share one name. Edit freely; rebuild with: node tools/links/build/cinematic.mjs",
+  "marvel": {
+    "aliases": {
+      "Iron Man": "Tony Stark", "Captain America": "Steve Rogers", "Hulk": "Bruce Banner", "Black Widow": "Natasha Romanoff",
+      "Hawkeye": "Clint Barton", "War Machine": "James Rhodes", "Rhodey": "James Rhodes", "Falcon": "Sam Wilson",
+      "Winter Soldier": "Bucky Barnes", "Scarlet Witch": "Wanda Maximoff", "Quicksilver": "Pietro Maximoff",
+      "Spider-Man": "Peter Parker", "Black Panther": "T'Challa", "Doctor Strange": "Stephen Strange", "Star-Lord": "Peter Quill",
+      "Ant-Man": "Scott Lang", "Wasp": "Hope van Dyne", "Captain Marvel": "Carol Danvers", "Red Skull": "Johann Schmidt",
+      "Killmonger": "Erik Killmonger", "Abomination": "Emil Blonsky", "Vulture": "Adrian Toomes", "Mysterio": "Quentin Beck",
+      "Green Goblin": "Norman Osborn", "Doctor Octopus": "Otto Octavius", "Electro": "Max Dillon", "Ghost": "Ava Starr",
+      "Yellowjacket": "Darren Cross", "MJ": "Michelle Jones", "Red Guardian": "Alexei Shostakov", "Taskmaster": "Antonia Dreykov",
+      "Kang": "Kang the Conqueror", "Deadpool": "Wade Wilson", "Wolverine": "Logan", "Human Torch": "Johnny Storm",
+      "Mister Fantastic": "Reed Richards", "Invisible Woman": "Sue Storm", "The Thing": "Ben Grimm", "Ms. Marvel": "Kamala Khan",
+      "Red Hulk": "Thaddeus Ross", "The Leader": "Samuel Sterns", "U.S. Agent": "John Walker", "Sentry": "Bob Reynolds",
+      "Silver Surfer": "Shalla-Bal", "Mantis": "Mantis", "Ronan the Accuser": "Ronan", "Wenwu": "Xu Wenwu", "The Mandarin": "Xu Wenwu"
+    },
+    "films": {
+      "Iron Man (2008)": ["Tony Stark", "Pepper Potts", "James Rhodes", "Obadiah Stane", "Phil Coulson", "Happy Hogan", "Ho Yinsen", "Raza", "Christine Everhart", "Nick Fury"],
+      "The Incredible Hulk (2008)": ["Bruce Banner", "Betty Ross", "Thaddeus Ross", "Emil Blonsky", "Samuel Sterns", "Leonard Samson", "Tony Stark"],
+      "Iron Man 2 (2010)": ["Tony Stark", "Pepper Potts", "James Rhodes", "Natasha Romanoff", "Nick Fury", "Phil Coulson", "Happy Hogan", "Ivan Vanko", "Justin Hammer", "Howard Stark", "Christine Everhart"],
+      "Thor (2011)": ["Thor", "Loki", "Odin", "Frigga", "Jane Foster", "Erik Selvig", "Darcy Lewis", "Heimdall", "Sif", "Volstagg", "Fandral", "Hogun", "Laufey", "Phil Coulson", "Clint Barton", "Nick Fury"],
+      "Captain America: The First Avenger (2011)": ["Steve Rogers", "Peggy Carter", "Bucky Barnes", "Howard Stark", "Johann Schmidt", "Arnim Zola", "Chester Phillips", "Abraham Erskine", "Dum Dum Dugan", "Nick Fury"],
+      "The Avengers (2012)": ["Tony Stark", "Steve Rogers", "Thor", "Bruce Banner", "Natasha Romanoff", "Clint Barton", "Nick Fury", "Maria Hill", "Phil Coulson", "Loki", "Erik Selvig", "Pepper Potts", "Thanos", "The Other", "Jasper Sitwell"],
+      "Iron Man 3 (2013)": ["Tony Stark", "Pepper Potts", "James Rhodes", "Happy Hogan", "Aldrich Killian", "Maya Hansen", "Trevor Slattery", "Harley Keener", "Eric Savin", "Bruce Banner"],
+      "Thor: The Dark World (2013)": ["Thor", "Loki", "Jane Foster", "Odin", "Frigga", "Heimdall", "Sif", "Volstagg", "Fandral", "Hogun", "Erik Selvig", "Darcy Lewis", "Malekith", "Algrim", "The Collector"],
+      "Captain America: The Winter Soldier (2014)": ["Steve Rogers", "Natasha Romanoff", "Sam Wilson", "Nick Fury", "Maria Hill", "Bucky Barnes", "Alexander Pierce", "Sharon Carter", "Brock Rumlow", "Jasper Sitwell", "Peggy Carter", "Wolfgang von Strucker", "Wanda Maximoff", "Pietro Maximoff"],
+      "Guardians of the Galaxy (2014)": ["Peter Quill", "Gamora", "Drax", "Rocket", "Groot", "Yondu", "Nebula", "Ronan", "Korath", "The Collector", "Thanos", "Kraglin", "Howard the Duck"],
+      "Avengers: Age of Ultron (2015)": ["Tony Stark", "Steve Rogers", "Thor", "Bruce Banner", "Natasha Romanoff", "Clint Barton", "Nick Fury", "Maria Hill", "Wanda Maximoff", "Pietro Maximoff", "Ultron", "Vision", "James Rhodes", "Sam Wilson", "Peggy Carter", "Heimdall", "Erik Selvig", "Ulysses Klaue", "Laura Barton", "Wolfgang von Strucker", "Thanos"],
+      "Ant-Man (2015)": ["Scott Lang", "Hank Pym", "Hope van Dyne", "Darren Cross", "Luis", "Cassie Lang", "Sam Wilson", "Peggy Carter", "Howard Stark", "Mitchell Carson", "Jim Paxton", "Maggie Lang", "Steve Rogers", "Bucky Barnes"],
+      "Captain America: Civil War (2016)": ["Steve Rogers", "Tony Stark", "Natasha Romanoff", "Sam Wilson", "Bucky Barnes", "James Rhodes", "Clint Barton", "Wanda Maximoff", "Vision", "Scott Lang", "T'Challa", "Peter Parker", "Sharon Carter", "Thaddeus Ross", "Helmut Zemo", "Brock Rumlow", "T'Chaka", "May Parker", "Everett Ross", "Howard Stark", "Maria Stark"],
+      "Doctor Strange (2016)": ["Stephen Strange", "Wong", "Karl Mordo", "The Ancient One", "Christine Palmer", "Kaecilius", "Dormammu", "Thor"],
+      "Guardians of the Galaxy Vol. 2 (2017)": ["Peter Quill", "Gamora", "Drax", "Rocket", "Groot", "Yondu", "Nebula", "Mantis", "Ego", "Ayesha", "Kraglin", "Stakar Ogord", "Howard the Duck"],
+      "Spider-Man: Homecoming (2017)": ["Peter Parker", "Tony Stark", "Happy Hogan", "May Parker", "Adrian Toomes", "Ned Leeds", "Michelle Jones", "Liz Allan", "Flash Thompson", "Pepper Potts", "Steve Rogers", "Mac Gargan"],
+      "Thor: Ragnarok (2017)": ["Thor", "Loki", "Bruce Banner", "Valkyrie", "Hela", "Grandmaster", "Skurge", "Heimdall", "Odin", "Korg", "Miek", "Stephen Strange", "Surtur"],
+      "Black Panther (2018)": ["T'Challa", "Erik Killmonger", "Nakia", "Okoye", "Shuri", "Ramonda", "M'Baku", "W'Kabi", "Zuri", "Ulysses Klaue", "Everett Ross", "T'Chaka", "Bucky Barnes"],
+      "Avengers: Infinity War (2018)": ["Tony Stark", "Steve Rogers", "Thor", "Bruce Banner", "Natasha Romanoff", "James Rhodes", "Sam Wilson", "Bucky Barnes", "Wanda Maximoff", "Vision", "Peter Parker", "Stephen Strange", "Wong", "T'Challa", "Okoye", "Shuri", "M'Baku", "Peter Quill", "Gamora", "Drax", "Rocket", "Groot", "Mantis", "Nebula", "Thanos", "Loki", "Heimdall", "Ebony Maw", "Proxima Midnight", "Corvus Glaive", "Cull Obsidian", "Pepper Potts", "Ned Leeds", "Eitri", "Johann Schmidt", "The Collector", "Nick Fury", "Maria Hill", "Thaddeus Ross"],
+      "Ant-Man and the Wasp (2018)": ["Scott Lang", "Hope van Dyne", "Hank Pym", "Janet van Dyne", "Bill Foster", "Ava Starr", "Sonny Burch", "Jimmy Woo", "Luis", "Cassie Lang", "Maggie Lang", "Jim Paxton"],
+      "Captain Marvel (2019)": ["Carol Danvers", "Nick Fury", "Phil Coulson", "Talos", "Yon-Rogg", "Maria Rambeau", "Monica Rambeau", "Ronan", "Korath", "Goose", "Supreme Intelligence", "Mar-Vell", "Steve Rogers", "Natasha Romanoff", "Bruce Banner", "James Rhodes"],
+      "Avengers: Endgame (2019)": ["Tony Stark", "Steve Rogers", "Thor", "Bruce Banner", "Natasha Romanoff", "Clint Barton", "James Rhodes", "Rocket", "Nebula", "Scott Lang", "Carol Danvers", "Pepper Potts", "Happy Hogan", "Thanos", "Gamora", "Loki", "Peter Parker", "Stephen Strange", "Wong", "T'Challa", "Shuri", "Okoye", "Wanda Maximoff", "Sam Wilson", "Bucky Barnes", "Peter Quill", "Drax", "Mantis", "Groot", "Hope van Dyne", "Valkyrie", "Korg", "Miek", "Hank Pym", "Janet van Dyne", "Howard Stark", "Peggy Carter", "Frigga", "The Ancient One", "Jane Foster", "Johann Schmidt", "Ned Leeds", "May Parker", "Ebony Maw", "Maria Hill", "Nick Fury", "Thaddeus Ross", "Cassie Lang", "Harley Keener", "Morgan Stark", "Kraglin", "Alexander Pierce", "Brock Rumlow", "Jasper Sitwell", "Ramonda", "M'Baku", "Howard the Duck", "Laura Barton"],
+      "Spider-Man: Far From Home (2019)": ["Peter Parker", "Michelle Jones", "Ned Leeds", "Happy Hogan", "May Parker", "Quentin Beck", "Nick Fury", "Maria Hill", "Talos", "Soren", "Flash Thompson", "Betty Brant", "J. Jonah Jameson"],
+      "Black Widow (2021)": ["Natasha Romanoff", "Yelena Belova", "Alexei Shostakov", "Melina Vostokoff", "Dreykov", "Antonia Dreykov", "Thaddeus Ross", "Rick Mason", "Valentina Allegra de Fontaine"],
+      "Shang-Chi and the Legend of the Ten Rings (2021)": ["Shang-Chi", "Katy", "Xu Wenwu", "Xialing", "Ying Nan", "Ying Li", "Razor Fist", "Death Dealer", "Trevor Slattery", "Wong", "Emil Blonsky", "Bruce Banner", "Carol Danvers"],
+      "Eternals (2021)": ["Sersi", "Ikaris", "Thena", "Ajak", "Kingo", "Sprite", "Phastos", "Makkari", "Druig", "Gilgamesh", "Dane Whitman", "Eros", "Pip the Troll", "Arishem"],
+      "Spider-Man: No Way Home (2021)": ["Peter Parker", "Michelle Jones", "Ned Leeds", "Stephen Strange", "Wong", "May Parker", "Happy Hogan", "Norman Osborn", "Otto Octavius", "Max Dillon", "Curt Connors", "Flint Marko", "Eddie Brock", "Matt Murdock", "J. Jonah Jameson", "Flash Thompson", "Betty Brant"],
+      "Doctor Strange in the Multiverse of Madness (2022)": ["Stephen Strange", "Wanda Maximoff", "Wong", "America Chavez", "Christine Palmer", "Karl Mordo", "Charles Xavier", "Black Bolt", "Maria Rambeau", "Reed Richards", "Clea", "Rintrah"],
+      "Thor: Love and Thunder (2022)": ["Thor", "Jane Foster", "Valkyrie", "Korg", "Gorr", "Zeus", "Peter Quill", "Drax", "Mantis", "Nebula", "Rocket", "Groot", "Kraglin", "Sif", "Hercules", "Heimdall", "Darcy Lewis", "Erik Selvig"],
+      "Black Panther: Wakanda Forever (2022)": ["Shuri", "Ramonda", "Okoye", "Nakia", "M'Baku", "Namor", "Riri Williams", "Everett Ross", "Valentina Allegra de Fontaine", "Aneka", "Toussaint", "Attuma", "Namora", "T'Challa"],
+      "Ant-Man and the Wasp: Quantumania (2023)": ["Scott Lang", "Hope van Dyne", "Hank Pym", "Janet van Dyne", "Cassie Lang", "Kang the Conqueror", "Darren Cross", "Jentorra", "Veb", "Lord Krylar", "Loki", "Mobius"],
+      "Guardians of the Galaxy Vol. 3 (2023)": ["Peter Quill", "Rocket", "Groot", "Drax", "Mantis", "Nebula", "Gamora", "Kraglin", "Cosmo", "High Evolutionary", "Adam Warlock", "Ayesha", "Lylla"],
+      "The Marvels (2023)": ["Carol Danvers", "Monica Rambeau", "Kamala Khan", "Nick Fury", "Dar-Benn", "Prince Yan", "Muneeba Khan", "Yusuf Khan", "Bruno Carrelli", "Goose", "Kate Bishop", "Hank McCoy", "Valkyrie"],
+      "Deadpool & Wolverine (2024)": ["Wade Wilson", "Logan", "Cassandra Nova", "Mr. Paradox", "Johnny Storm", "Elektra", "Blade", "Laura Kinney", "Gambit", "Happy Hogan", "Dogpool", "Vanessa", "Blind Al", "Colossus", "Negasonic Teenage Warhead", "Yukio", "Juggernaut", "Sabretooth", "Toad", "Pyro", "Azazel"],
+      "Captain America: Brave New World (2025)": ["Sam Wilson", "Joaquin Torres", "Thaddeus Ross", "Isaiah Bradley", "Samuel Sterns", "Ruth Bat-Seraph", "Sidewinder", "Betty Ross", "Bucky Barnes"],
+      "Thunderbolts* (2025)": ["Yelena Belova", "Bucky Barnes", "Alexei Shostakov", "John Walker", "Ava Starr", "Antonia Dreykov", "Valentina Allegra de Fontaine", "Bob Reynolds", "Mel"],
+      "The Fantastic Four: First Steps (2025)": ["Reed Richards", "Sue Storm", "Johnny Storm", "Ben Grimm", "Galactus", "Shalla-Bal", "H.E.R.B.I.E.", "Harvey Elder", "Franklin Richards"]
+    }
+  },
+  "starwars": {
+    "aliases": {
+      "Kylo Ren": "Ben Solo", "Darth Sidious": "Palpatine", "The Emperor": "Palpatine", "Emperor Palpatine": "Palpatine", "Chewie": "Chewbacca",
+      "Leia Organa": "Leia", "Princess Leia": "Leia", "Han": "Han Solo", "Luke": "Luke Skywalker", "Obi-Wan": "Obi-Wan Kenobi", "Ben Kenobi": "Obi-Wan Kenobi",
+      "Threepio": "C-3PO", "Artoo": "R2-D2", "Tarkin": "Grand Moff Tarkin", "Grievous": "General Grievous", "Ackbar": "Admiral Ackbar",
+      "Padme": "Padmé Amidala", "Lando": "Lando Calrissian", "Dooku": "Count Dooku", "Maul": "Darth Maul", "Jabba": "Jabba the Hutt"
+    },
+    "films": {
+      "The Phantom Menace (1999)": ["Qui-Gon Jinn", "Obi-Wan Kenobi", "Padmé Amidala", "Anakin Skywalker", "Shmi Skywalker", "Jar Jar Binks", "Palpatine", "Darth Maul", "R2-D2", "C-3PO", "Yoda", "Mace Windu", "Watto", "Sebulba", "Boss Nass", "Captain Panaka", "Nute Gunray", "Ki-Adi-Mundi", "Jabba the Hutt"],
+      "Attack of the Clones (2002)": ["Anakin Skywalker", "Obi-Wan Kenobi", "Padmé Amidala", "Palpatine", "Yoda", "Mace Windu", "Count Dooku", "Jango Fett", "Boba Fett", "Shmi Skywalker", "Owen Lars", "Beru Lars", "C-3PO", "R2-D2", "Jar Jar Binks", "Bail Organa", "Zam Wesell", "Dexter Jettster", "Watto", "Nute Gunray", "Ki-Adi-Mundi"],
+      "Revenge of the Sith (2005)": ["Anakin Skywalker", "Darth Vader", "Obi-Wan Kenobi", "Padmé Amidala", "Palpatine", "Yoda", "Mace Windu", "Count Dooku", "General Grievous", "Bail Organa", "Chewbacca", "C-3PO", "R2-D2", "Owen Lars", "Beru Lars", "Ki-Adi-Mundi", "Nute Gunray", "Commander Cody", "Grand Moff Tarkin", "Jar Jar Binks", "Luke Skywalker", "Leia"],
+      "A New Hope (1977)": ["Luke Skywalker", "Leia", "Han Solo", "Chewbacca", "Obi-Wan Kenobi", "Darth Vader", "Grand Moff Tarkin", "C-3PO", "R2-D2", "Owen Lars", "Beru Lars", "Greedo", "Wedge Antilles", "Biggs Darklighter"],
+      "The Empire Strikes Back (1980)": ["Luke Skywalker", "Leia", "Han Solo", "Chewbacca", "Darth Vader", "Yoda", "Obi-Wan Kenobi", "Lando Calrissian", "Boba Fett", "C-3PO", "R2-D2", "Palpatine", "Wedge Antilles", "Lobot", "Admiral Piett"],
+      "Return of the Jedi (1983)": ["Luke Skywalker", "Leia", "Han Solo", "Chewbacca", "Darth Vader", "Anakin Skywalker", "Palpatine", "Yoda", "Obi-Wan Kenobi", "Lando Calrissian", "Boba Fett", "Jabba the Hutt", "Wicket", "Admiral Ackbar", "Mon Mothma", "Wedge Antilles", "Nien Nunb", "Admiral Piett", "Bib Fortuna", "C-3PO", "R2-D2"],
+      "Rogue One (2016)": ["Jyn Erso", "Cassian Andor", "K-2SO", "Chirrut Îmwe", "Baze Malbus", "Bodhi Rook", "Saw Gerrera", "Orson Krennic", "Galen Erso", "Grand Moff Tarkin", "Darth Vader", "Mon Mothma", "Bail Organa", "Leia", "C-3PO", "R2-D2"],
+      "The Force Awakens (2015)": ["Rey", "Finn", "Poe Dameron", "Ben Solo", "Han Solo", "Leia", "Chewbacca", "Luke Skywalker", "BB-8", "C-3PO", "R2-D2", "Maz Kanata", "Snoke", "General Hux", "Captain Phasma", "Lor San Tekka", "Admiral Ackbar", "Nien Nunb", "Unkar Plutt"],
+      "The Last Jedi (2017)": ["Rey", "Finn", "Poe Dameron", "Ben Solo", "Luke Skywalker", "Leia", "Chewbacca", "Rose Tico", "Snoke", "General Hux", "Captain Phasma", "Amilyn Holdo", "DJ", "Yoda", "BB-8", "C-3PO", "R2-D2", "Admiral Ackbar", "Maz Kanata"],
+      "The Rise of Skywalker (2019)": ["Rey", "Finn", "Poe Dameron", "Ben Solo", "Leia", "Chewbacca", "Palpatine", "Lando Calrissian", "Rose Tico", "General Hux", "Allegiant General Pryde", "Zorii Bliss", "Jannah", "Babu Frik", "Han Solo", "Luke Skywalker", "BB-8", "C-3PO", "R2-D2", "D-O", "Maz Kanata", "Wedge Antilles", "Nien Nunb"],
+      "Solo (2018)": ["Han Solo", "Chewbacca", "Lando Calrissian", "Qi'ra", "Tobias Beckett", "L3-37", "Dryden Vos", "Enfys Nest", "Val", "Rio Durant", "Darth Maul"]
+    }
+  }
+}

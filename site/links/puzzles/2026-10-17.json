@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-17",
+ "number": 11,
+ "holes": [
+  {
+   "course": "smash",
+   "tee": "Thunderbolt Ross",
+   "pin": "Wolverine",
+   "ob": [
+    "Spider-Man",
+    "Deadpool",
+    "Magneto"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Bagon",
+   "pin": "Hippopotas",
+   "ob": [
+    "Wooper",
+    "Quagsire",
+    "Marshtomp"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "smash",
+   "tee": "Usopp",
+   "pin": "Frieza",
+   "ob": [
+    "Monkey D. Luffy",
+    "Roronoa Zoro",
+    "Sanji"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

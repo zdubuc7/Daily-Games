@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-16",
+ "number": 10,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Kanye West",
+   "pin": "Ella Fitzgerald",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Rod Stewart"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Maroon 5",
+   "pin": "Tupac Shakur",
+   "ob": [
+    "Snoop Dogg",
+    "Future",
+    "T.I."
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Miles Davis",
+   "pin": "Diana Ross",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Ella Fitzgerald"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

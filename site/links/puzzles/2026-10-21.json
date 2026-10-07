@@ -1,0 +1,36 @@
+{
+ "date": "2026-10-21",
+ "number": 15,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "school",
+   "pin": "land",
+   "ob": [
+    "house",
+    "work"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "water",
+   "pin": "enter",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "fight",
+   "pin": "reporter",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

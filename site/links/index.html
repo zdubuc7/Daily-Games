@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Links</title>
+  <meta name="description" content="A daily connections game played like golf. Link the tee to the pin in as few strokes as you can.">
+  <meta name="theme-color" content="#1d5a37">
+  <meta property="og:title" content="The Links">
+  <meta property="og:description" content="Link the tee to the pin in as few strokes as you can. Three new holes every day.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231d5a37'/%3E%3Cpath d='M12 25V7l11 4-11 4' stroke='%23fff' stroke-width='2' fill='%23e8423f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- The whole page is the golf hole; everything else floats on top of it. -->
+  <div class="scene-wrap" id="course">
+    <svg id="scene" class="scene" role="img" aria-label="Top-down view of your ball on the golf hole"></svg>
+    <span class="hole-label"></span>
+    <span class="lie"></span>
+    <div class="toasts" aria-hidden="true"></div>
+  </div>
+
+  <!-- HUD: hole pod · hole dots · round score (Krillion-style pods across the top) -->
+  <header class="hud-top" id="hud-top">
+    <button class="icon-btn menu-btn" id="btn-menu" aria-label="Menu" title="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="hud-grid">
+      <div class="hud-pod"><small>Hole</small><strong id="pod-hole">1/3</strong></div>
+      <div class="hud-mid">
+        <div class="hud-title" id="round-label">The Links</div>
+        <nav class="hud-dots" id="holes" aria-label="Holes"></nav>
+        <div class="hud-course" id="hud-course"></div>
+      </div>
+      <div class="hud-pod score"><small>Round</small><strong id="pod-score">E</strong></div>
+    </div>
+  </header>
+
+  <!-- The prompt card floats over the course while you're choosing a link -->
+  <section class="prompt-card" id="prompt" aria-live="polite">
+    <small id="p-eyebrow">Stroke 1 · Link from</small>
+    <h2><span id="p-from"></span><span class="p-arrow">→</span><span class="p-pin" id="p-pin"></span></h2>
+    <p id="p-sub"></p>
+    <div id="next-type" class="next-type" hidden></div>
+    <div class="hazards">
+      <div id="ob" class="ob"></div>
+      <button id="btn-browse" type="button" class="link-btn" hidden>All answers</button>
+    </div>
+    <div id="msg" class="msg"></div>
+  </section>
+
+  <!-- Answer dock pinned to the bottom of the screen -->
+  <div class="hud-bottom" id="hud-bottom">
+    <ol id="chain" class="chain" aria-label="Your chain"></ol>
+    <form id="play" class="answer-dock" autocomplete="off">
+      <div class="dock-stroke" title="Strokes on this hole">
+        <small>Stroke</small><strong id="dock-stroke">1</strong>
+        <i id="dock-mull" class="mull-pip" title="Mulligan ready (first wrong link of the day is free)"></i>
+      </div>
+      <div class="input-wrap">
+        <ul id="suggest" class="suggest" role="listbox" hidden></ul>
+        <input id="answer" type="text" placeholder="Type a link…" aria-label="Your next link" aria-autocomplete="list" aria-controls="suggest" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+      </div>
+      <button id="swing" type="submit">Swing</button>
+    </form>
+  </div>
+
+  <div id="loading" class="loading">Raking the bunkers…</div>
+
+  <!-- Course card (before each hole) -->
+  <dialog id="dlg-card" class="dlg">
+    <div class="dlg-body">
+      <div class="eyebrow" id="card-hole"></div>
+      <h2 id="card-course"></h2>
+      <p id="card-rule" class="muted"></p>
+      <div class="teepin">
+        <div><span class="label">Tee</span><strong id="card-tee"></strong></div>
+        <div class="arrow">→</div>
+        <div><span class="label">Pin</span><strong id="card-pin"></strong></div>
+      </div>
+      <div class="facts">
+        <div><span class="label">Par</span><strong id="card-par"></strong></div>
+        <div><span class="label">Shortest chain</span><strong id="card-short"></strong></div>
+      </div>
+      <div id="card-ob-wrap">
+        <span class="label">Out of bounds <small>(+1 stroke each if used)</small></span>
+        <div id="card-ob" class="ob"></div>
+      </div>
+      <button class="btn arcade wide" id="card-go">Tee off</button>
+    </div>
+  </dialog>
+
+  <!-- Hole result -->
+  <dialog id="dlg-result" class="dlg">
+    <div class="dlg-body">
+      <div class="eyebrow" id="res-hole"></div>
+      <h2 id="res-name" class="score-name"></h2>
+      <p id="res-line" class="muted"></p>
+      <div id="res-flag" class="flagnote" hidden></div>
+      <h3>Your chain</h3>
+      <ol id="res-chain" class="chain small"></ol>
+      <h3>The shortest chain</h3>
+      <ol id="res-pro" class="chain small"></ol>
+      <button class="btn primary wide" id="res-next">Next hole</button>
+    </div>
+  </dialog>
+
+  <!-- Round summary -->
+  <dialog id="dlg-round" class="dlg">
+    <div class="dlg-body">
+      <div class="eyebrow">Scorecard</div>
+      <h2 id="round-total" class="score-name"></h2>
+      <table class="scorecard" id="round-card"></table>
+      <pre id="share-text" class="share-text"></pre>
+      <button class="btn primary wide" id="btn-share">Copy results</button>
+      <p class="muted center" id="next-round"></p>
+      <button class="btn ghost wide" data-close>Back to the course</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-help" class="dlg">
+    <div class="dlg-body prose">
+      <h2 tabindex="-1" autofocus>How to play</h2>
+      <p>Each day has <strong>3 holes</strong>. On each hole, get from the <strong>tee</strong> to the <strong>pin</strong> one link at a time, following that course's rule. <strong>Every link is a stroke.</strong></p>
+      <p>Your ball moves toward the hole when a link gets you closer. When the pin is one link away, you're <strong>on the green</strong> — sink the putt by naming the pin.</p>
+      <h3>Scoring</h3>
+      <p>Par is the shortest possible chain plus two.</p>
+      <table class="mini">
+        <tr><td>Shortest chain</td><td>Eagle −2</td></tr>
+        <tr><td>Shortest + 1</td><td>Birdie −1</td></tr>
+        <tr><td>Shortest + 2</td><td>Par E</td></tr>
+        <tr><td>Shortest + 3</td><td>Bogey +1</td></tr>
+        <tr><td>Shortest + 4</td><td>Double bogey +2</td></tr>
+        <tr><td>Shortest + 5</td><td>Triple bogey +3 — you pick up</td></tr>
+        <tr><td>Beat our shortest</td><td>Albatross −3</td></tr>
+      </table>
+      <h3>Hazards</h3>
+      <ul>
+        <li><strong>Out of bounds:</strong> each hole lists 2–3 overconnected answers. You can still use them, but each costs a 1-stroke penalty and you take a drop.</li>
+        <li><strong>Wrong link:</strong> swing and miss — 1-stroke penalty, try again from the same spot.</li>
+        <li><strong>Mulligan:</strong> your first wrong link each day is free.</li>
+      </ul>
+      <p class="muted">No timer. Pick answers from the list as you type. New round every day at midnight Eastern.</p>
+      <button class="btn primary wide" data-close>Let's play</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-archive" class="dlg">
+    <div class="dlg-body">
+      <h2>Past rounds</h2>
+      <ul id="archive-list" class="archive"></ul>
+      <button class="btn ghost wide" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-stats" class="dlg">
+    <div class="dlg-body">
+      <h2>Your stats</h2>
+      <div id="stats" class="stats"></div>
+      <p class="muted small">Stats live in this browser only.</p>
+      <button class="btn ghost wide" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-browse" class="dlg">
+    <div class="dlg-body">
+      <h2 id="browse-title">All answers</h2>
+      <input id="browse-filter" type="text" placeholder="Filter…" aria-label="Filter answers" autocomplete="off">
+      <ul id="browse-list" class="browse"></ul>
+      <button class="btn ghost wide" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-menu" class="dlg menu-dlg">
+    <div class="dlg-body">
+      <div class="eyebrow">The Links</div>
+      <h2>Clubhouse</h2>
+      <button class="btn ghost wide" id="m-help" type="button">How to play</button>
+      <button class="btn ghost wide" id="m-archive" type="button">Past rounds</button>
+      <button class="btn ghost wide" id="m-stats" type="button">Your stats</button>
+      <button class="btn ghost wide" id="m-round" type="button">Scorecard</button>
+      <button class="btn ghost wide" id="m-tools" type="button">Testing tools</button>
+      <button class="btn primary wide" data-close type="button">Back to the course</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-tools" class="dlg">
+    <div class="dlg-body">
+      <div class="eyebrow">For testing</div>
+      <h2>Testing tools</h2>
+      <h3>Change course</h3>
+      <p class="muted small">Swap the current hole for a fresh random puzzle on any course.</p>
+      <div class="tool-row">
+        <select id="tool-course" aria-label="Course"></select>
+        <button class="btn primary" id="tool-swap" type="button">Swap hole</button>
+      </div>
+      <p class="muted small" id="tool-status"></p>
+      <h3>Reset</h3>
+      <button class="btn ghost wide" id="tool-reset-hole" type="button">Replay this hole</button>
+      <button class="btn ghost wide" id="tool-reset" type="button">Reset today's round (and course swaps)</button>
+      <button class="btn ghost wide" data-close type="button">Close</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-02",
+ "number": 27,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "John Offerdahl",
+   "pin": "Bruce Matthews",
+   "ob": [
+    "Nick Vannett",
+    "Patrick Ramsey",
+    "Matthew Wright"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Travis Frederick",
+   "pin": "Marlon Humphrey",
+   "ob": [
+    "Eric Tomlinson",
+    "Jonathan Bullard",
+    "John Jenkins"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Erik Williams",
+   "pin": "Nick Bosa",
+   "ob": [
+    "Joshua Dobbs",
+    "Cassius Marsh",
+    "Ted Washington (DL, 1991–07)"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

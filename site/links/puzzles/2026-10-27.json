@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-27",
+ "number": 21,
+ "holes": [
+  {
+   "course": "hollywood",
+   "tee": "Bill Pullman",
+   "pin": "Christina Applegate",
+   "ob": [
+    "Tom Hanks",
+    "Nicole Kidman",
+    "Mark Wahlberg"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "primetime",
+   "tee": "The Rookie",
+   "pin": "Parks and Recreation",
+   "ob": [
+    "Party Down",
+    "Firefly",
+    "Death by Lightning"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "marvel",
+   "tee": "Reed Richards",
+   "pin": "Flash Thompson",
+   "ob": [
+    "Nick Fury",
+    "Happy Hogan",
+    "Steve Rogers"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

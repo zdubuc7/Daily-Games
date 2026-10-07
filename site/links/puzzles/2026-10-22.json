@@ -1,0 +1,35 @@
+{
+ "date": "2026-10-22",
+ "number": 16,
+ "holes": [
+  {
+   "course": "borders",
+   "tee": "Hungary",
+   "pin": "Norway",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "states",
+   "tee": "Oklahoma",
+   "pin": "Indiana",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "Panama",
+   "pin": "Guyana",
+   "ob": [
+    "Brazil"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

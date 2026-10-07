@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-13",
+ "number": 7,
+ "holes": [
+  {
+   "course": "hollywood",
+   "tee": "Matthew Broderick",
+   "pin": "Tom Hanks",
+   "ob": [
+    "Bruce Willis",
+    "Nicole Kidman",
+    "Morgan Freeman"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "primetime",
+   "tee": "Heated Rivalry",
+   "pin": "Community",
+   "ob": [
+    "Invincible",
+    "Mr. & Mrs. Smith",
+    "The Afterparty"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "marvel",
+   "tee": "Wanda Maximoff",
+   "pin": "Monica Rambeau",
+   "ob": [
+    "Nick Fury",
+    "Happy Hogan",
+    "Bruce Banner"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

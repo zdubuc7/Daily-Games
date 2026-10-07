@@ -1,0 +1,14 @@
+{
+  "name": "the-round",
+  "private": true,
+  "type": "module",
+  "description": "The Round — daily golf-themed puzzle games. Currently: The Links.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "serve": "node tools/serve.mjs 8765",
+    "links:data": "node tools/links/build/all.mjs",
+    "links:generate": "node tools/links/generate.mjs",
+    "links:revalidate": "node tools/links/generate.mjs --revalidate",
+    "links:test": "node tools/links/test.mjs"
+  }
+}

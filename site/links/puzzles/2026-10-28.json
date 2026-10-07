@@ -1,0 +1,39 @@
+{
+ "date": "2026-10-28",
+ "number": 22,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "green",
+   "pin": "grass",
+   "ob": [
+    "land"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "bags",
+   "pin": "boys",
+   "ob": [
+    "bars",
+    "bats",
+    "bots"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "collection",
+   "pin": "routine",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+name: The Links — daily puzzles & deploy
+
+on:
+  schedule:
+    - cron: '15 4 * * *'   # daily: top up puzzles and redeploy (~12:15am Eastern)
+    - cron: '0 9 * * 1'    # Mondays: also refresh course data (rosters, IMDb, Wikidata...)
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      refresh_data:
+        description: 'Rebuild course data before generating'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: links
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache downloaded sources
+        if: github.event.schedule == '0 9 * * 1' || inputs.refresh_data
+        uses: actions/cache@v4
+        with:
+          path: tools/links/.cache
+          key: links-sources-${{ github.run_id }}
+          restore-keys: links-sources-
+
+      - name: Refresh course data
+        if: github.event.schedule == '0 9 * * 1' || inputs.refresh_data
+        # Wiktionary is slow and rarely changes, so the compound list is only rebuilt by hand.
+        run: node tools/links/build/all.mjs states borders cinematic ladder rhyme pokedex gridiron imdb studio smash
+
+      - name: Generate puzzles
+        # Fills any missing days ahead and re-checks future days against fresh data.
+        run: node tools/links/generate.mjs --revalidate
+
+      - name: Sanity checks
+        run: node tools/links/test.mjs
+
+      - name: Commit new puzzles / data
+        run: |
+          git config user.name "links-bot"
+          git config user.email "links-bot@users.noreply.github.com"
+          git add site/links/puzzles site/links/data
+          if git diff --cached --quiet; then echo "Nothing new"; else git commit -m "The Links: puzzles for $(date -u +%F)" && git push; fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

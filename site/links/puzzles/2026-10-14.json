@@ -1,0 +1,35 @@
+{
+ "date": "2026-10-14",
+ "number": 8,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "flat",
+   "pin": "spring",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "cam",
+   "pin": "saw",
+   "ob": [
+    "ham"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "rhyme",
+   "tee": "cup",
+   "pin": "accused",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

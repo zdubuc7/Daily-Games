@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-26",
+ "number": 20,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "Denzel Ward",
+   "pin": "Walter Jones",
+   "ob": [
+    "Josh McCown",
+    "Nick Vannett",
+    "DeAndre Carter"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Lamar Jackson",
+   "pin": "Jeffery Simmons",
+   "ob": [
+    "Eric Tomlinson",
+    "Kevin Zeitler",
+    "Matt Cassel"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Nick Mangold",
+   "pin": "Quenton Nelson",
+   "ob": [
+    "Ryan Fitzpatrick",
+    "Patrick Ramsey",
+    "Tom Tupa"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

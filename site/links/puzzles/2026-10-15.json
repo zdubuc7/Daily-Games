@@ -1,0 +1,38 @@
+{
+ "date": "2026-10-15",
+ "number": 9,
+ "holes": [
+  {
+   "course": "states",
+   "tee": "Arizona",
+   "pin": "Montana",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "Spain",
+   "pin": "Germany",
+   "ob": [
+    "France"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "states",
+   "tee": "Texas",
+   "pin": "Missouri",
+   "ob": [
+    "Tennessee",
+    "Arkansas"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-10",
+ "number": 4,
+ "holes": [
+  {
+   "course": "pokedex",
+   "tee": "Meganium",
+   "pin": "Chimchar",
+   "ob": [
+    "Lotad",
+    "Lombre",
+    "Ludicolo"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "smash",
+   "tee": "Grand Admiral Thrawn",
+   "pin": "Darth Maul",
+   "ob": [
+    "Darth Vader",
+    "Luke Skywalker",
+    "Han Solo"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Dusknoir",
+   "pin": "Ponyta",
+   "ob": [
+    "Volcanion",
+    "Frillish",
+    "Jellicent"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

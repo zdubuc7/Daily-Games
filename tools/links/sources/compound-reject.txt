@@ -1,0 +1,1 @@
+# Compound terms to reject even though Wiktionary lists them. One per line.

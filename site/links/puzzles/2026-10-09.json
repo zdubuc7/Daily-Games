@@ -1,0 +1,44 @@
+{
+ "date": "2026-10-09",
+ "number": 3,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Billie Holiday",
+   "pin": "Meryl Streep",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Ella Fitzgerald"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Gloria Estefan",
+   "pin": "Fergie",
+   "ob": [
+    "Snoop Dogg",
+    "David Guetta",
+    "Pitbull"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Rita Ora",
+   "pin": "Chris Martin",
+   "ob": [
+    "Kanye West",
+    "David Guetta"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

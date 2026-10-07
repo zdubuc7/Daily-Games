@@ -1,0 +1,37 @@
+{
+ "date": "2026-10-31",
+ "number": 25,
+ "holes": [
+  {
+   "course": "smash",
+   "tee": "The Joker",
+   "pin": "Samus Aran",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Slugma",
+   "pin": "Pinsir",
+   "ob": [
+    "Surskit",
+    "Dewpider",
+    "Araquanid"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "smash",
+   "tee": "General Grievous",
+   "pin": "Professor X",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}

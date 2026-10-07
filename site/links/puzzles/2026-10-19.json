@@ -1,0 +1,45 @@
+{
+ "date": "2026-10-19",
+ "number": 13,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "Olin Kreutz",
+   "pin": "David DeCastro",
+   "ob": [
+    "Josh McCown",
+    "Joshua Dobbs",
+    "Mark Royals"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Joey Browner",
+   "pin": "Chris Snee",
+   "ob": [
+    "Josh Johnson",
+    "Joshua Dobbs",
+    "Nick Vannett"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Budda Baker",
+   "pin": "David Bakhtiari",
+   "ob": [
+    "Tyrod Taylor",
+    "Tom Tupa",
+    "Mike Nugent"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ]
+}

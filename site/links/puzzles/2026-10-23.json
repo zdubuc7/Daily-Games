@@ -1,0 +1,41 @@
+{
+ "date": "2026-10-23",
+ "number": 17,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Hans Zimmer",
+   "pin": "Shakira",
+   "ob": [
+    "Lil Wayne"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Corbin Bleu",
+   "pin": "Jennie",
+   "ob": [
+    "The Weeknd"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "studio",
+   "tee": "Black Eyed Peas",
+   "pin": "Lily Allen",
+   "ob": [
+    "David Guetta",
+    "T-Pain",
+    "Tyga"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ]
+}
