@@ -3,40 +3,42 @@
  "number": 1,
  "holes": [
   {
-   "course": "smash",
-   "tee": "Captain America",
-   "pin": "Chun-Li",
+   "course": "pokedex",
+   "tee": "Muk",
+   "pin": "Horsea",
    "ob": [
-    "Akuma",
-    "Wolverine",
-    "Spider-Man"
+    "Bibarel",
+    "Lotad",
+    "Lombre"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "smash",
-   "tee": "Frieza",
-   "pin": "Nami",
+   "course": "pokedex",
+   "tee": "Sandshrew",
+   "pin": "Torchic",
    "ob": [
-    "Monkey D. Luffy",
-    "Roronoa Zoro",
-    "Sanji"
+    "Volcanion",
+    "Wooper",
+    "Quagsire"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "smash",
-   "tee": "Boba Fett",
-   "pin": "Betsy Braddock",
+   "course": "pokedex",
+   "tee": "Donphan",
+   "pin": "Gorebyss",
    "ob": [
-    "Akuma"
+    "Bibarel",
+    "Lotad",
+    "Lombre"
    ],
-   "shortest": 3,
-   "par": 5,
+   "shortest": 2,
+   "par": 4,
    "v": "2026-10-07"
   }
  ],
