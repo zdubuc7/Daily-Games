@@ -3,39 +3,39 @@
  "number": 1,
  "holes": [
   {
-   "course": "pokedex",
-   "tee": "Muk",
-   "pin": "Horsea",
+   "course": "starwars",
+   "tee": "Admiral Ackbar",
+   "pin": "Beru Lars",
    "ob": [
-    "Bibarel",
-    "Lotad",
-    "Lombre"
+    "C-3PO",
+    "R2-D2",
+    "Leia"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "pokedex",
-   "tee": "Sandshrew",
-   "pin": "Torchic",
+   "course": "starwars",
+   "tee": "Shmi Skywalker",
+   "pin": "Darth Vader",
    "ob": [
-    "Volcanion",
-    "Wooper",
-    "Quagsire"
+    "C-3PO",
+    "R2-D2",
+    "Leia"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "pokedex",
-   "tee": "Donphan",
-   "pin": "Gorebyss",
+   "course": "starwars",
+   "tee": "Maz Kanata",
+   "pin": "Jabba the Hutt",
    "ob": [
-    "Bibarel",
-    "Lotad",
-    "Lombre"
+    "C-3PO",
+    "R2-D2",
+    "Leia"
    ],
    "shortest": 2,
    "par": 4,
