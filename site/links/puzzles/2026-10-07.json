@@ -3,42 +3,33 @@
  "number": 1,
  "holes": [
   {
-   "course": "starwars",
-   "tee": "Admiral Ackbar",
-   "pin": "Beru Lars",
+   "course": "borders",
+   "tee": "Belgium",
+   "pin": "San Marino",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "Kazakhstan",
+   "pin": "Iran",
    "ob": [
-    "C-3PO",
-    "R2-D2",
-    "Leia"
+    "China",
+    "Russia"
    ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
   },
   {
-   "course": "starwars",
-   "tee": "Shmi Skywalker",
-   "pin": "Darth Vader",
-   "ob": [
-    "C-3PO",
-    "R2-D2",
-    "Leia"
-   ],
-   "shortest": 2,
-   "par": 4,
-   "v": "2026-10-07"
-  },
-  {
-   "course": "starwars",
-   "tee": "Maz Kanata",
-   "pin": "Jabba the Hutt",
-   "ob": [
-    "C-3PO",
-    "R2-D2",
-    "Leia"
-   ],
-   "shortest": 2,
-   "par": 4,
+   "course": "borders",
+   "tee": "Slovakia",
+   "pin": "Finland",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
    "v": "2026-10-07"
   }
  ],
