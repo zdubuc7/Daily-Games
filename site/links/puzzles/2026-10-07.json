@@ -3,10 +3,14 @@
  "number": 1,
  "holes": [
   {
-   "course": "compound",
-   "tee": "snow",
-   "pin": "free",
-   "ob": [],
+   "course": "marvel",
+   "tee": "Happy Hogan",
+   "pin": "Nakia",
+   "ob": [
+    "Nick Fury",
+    "Bruce Banner",
+    "Steve Rogers"
+   ],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
@@ -34,5 +38,16 @@
    "par": 5,
    "v": "2026-10-07"
   }
- ]
+ ],
+ "original": {
+  "0": {
+   "course": "compound",
+   "tee": "snow",
+   "pin": "free",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ }
 }
