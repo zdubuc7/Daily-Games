@@ -4,6 +4,39 @@
  "holes": [
   {
    "course": "borders",
+   "tee": "Romania",
+   "pin": "Syria",
+   "ob": [
+    "Serbia"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "South Sudan",
+   "pin": "Equatorial Guinea",
+   "ob": [
+    "DR Congo"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "borders",
+   "tee": "Finland",
+   "pin": "South Korea",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ],
+ "original": {
+  "0": {
+   "course": "borders",
    "tee": "Austria",
    "pin": "Montenegro",
    "ob": [
@@ -14,7 +47,7 @@
    "par": 5,
    "v": "2026-10-07"
   },
-  {
+  "1": {
    "course": "states",
    "tee": "Illinois",
    "pin": "West Virginia",
@@ -26,7 +59,7 @@
    "par": 5,
    "v": "2026-10-07"
   },
-  {
+  "2": {
    "course": "borders",
    "tee": "Suriname",
    "pin": "Italy",
@@ -35,5 +68,5 @@
    "par": 4,
    "v": "2026-10-07"
   }
- ]
+ }
 }
