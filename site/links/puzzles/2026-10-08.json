@@ -3,40 +3,32 @@
  "number": 2,
  "holes": [
   {
-   "course": "hollywood",
-   "tee": "Rose Byrne",
-   "pin": "Jon Hamm",
+   "course": "states",
+   "tee": "Pennsylvania",
+   "pin": "Missouri",
    "ob": [
-    "Nicolas Cage",
-    "Mark Wahlberg",
-    "Keanu Reeves"
+    "Tennessee"
    ],
-   "shortest": 2,
-   "par": 4,
+   "shortest": 3,
+   "par": 5,
    "v": "2026-10-07"
   },
   {
-   "course": "hollywood",
-   "tee": "Tye Sheridan",
-   "pin": "Richard Jenkins",
+   "course": "states",
+   "tee": "Illinois",
+   "pin": "Mississippi",
    "ob": [
-    "Samuel L. Jackson",
-    "Nicolas Cage",
-    "Willem Dafoe"
+    "Missouri"
    ],
-   "shortest": 2,
-   "par": 4,
+   "shortest": 3,
+   "par": 5,
    "v": "2026-10-07"
   },
   {
-   "course": "hollywood",
-   "tee": "Kirsten Dunst",
-   "pin": "Nicolas Cage",
-   "ob": [
-    "Samuel L. Jackson",
-    "Willem Dafoe",
-    "Nicole Kidman"
-   ],
+   "course": "states",
+   "tee": "Arizona",
+   "pin": "Wyoming",
+   "ob": [],
    "shortest": 2,
    "par": 4,
    "v": "2026-10-07"
