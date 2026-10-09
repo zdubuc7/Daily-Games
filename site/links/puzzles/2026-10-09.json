@@ -3,6 +3,39 @@
  "number": 3,
  "holes": [
   {
+   "course": "ladder",
+   "tee": "mark",
+   "pin": "hand",
+   "ob": [
+    "mare"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "gold",
+   "pin": "boat",
+   "ob": [
+    "boot"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "nail",
+   "pin": "sand",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  }
+ ],
+ "original": {
+  "0": {
    "course": "studio",
    "tee": "Billie Holiday",
    "pin": "Meryl Streep",
@@ -15,7 +48,7 @@
    "par": 5,
    "v": "2026-10-07"
   },
-  {
+  "1": {
    "course": "studio",
    "tee": "Gloria Estefan",
    "pin": "Fergie",
@@ -28,7 +61,7 @@
    "par": 5,
    "v": "2026-10-07"
   },
-  {
+  "2": {
    "course": "studio",
    "tee": "Rita Ora",
    "pin": "Chris Martin",
@@ -40,5 +73,5 @@
    "par": 4,
    "v": "2026-10-07"
   }
- ]
+ }
 }
