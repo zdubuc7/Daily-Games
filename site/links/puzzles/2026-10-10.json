@@ -3,6 +3,47 @@
  "number": 4,
  "holes": [
   {
+   "course": "gridiron",
+   "tee": "LeRoy Butler",
+   "pin": "Dan Marino",
+   "ob": [
+    "Jamon Meredith",
+    "Patrick Ramsey",
+    "Mark Royals"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "T.J. Watt",
+   "pin": "Brian Urlacher",
+   "ob": [
+    "Josh McCown",
+    "Nick Vannett",
+    "Patrick Omameh"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Dion Dawkins",
+   "pin": "Sterling Sharpe",
+   "ob": [
+    "Jamon Meredith",
+    "Ryan Fitzpatrick",
+    "Shayne Graham"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  }
+ ],
+ "original": {
+  "0": {
    "course": "pokedex",
    "tee": "Meganium",
    "pin": "Chimchar",
@@ -15,7 +56,7 @@
    "par": 4,
    "v": "2026-10-07"
   },
-  {
+  "1": {
    "course": "smash",
    "tee": "Grand Admiral Thrawn",
    "pin": "Darth Maul",
@@ -28,7 +69,7 @@
    "par": 4,
    "v": "2026-10-07"
   },
-  {
+  "2": {
    "course": "pokedex",
    "tee": "Dusknoir",
    "pin": "Ponyta",
@@ -41,5 +82,5 @@
    "par": 4,
    "v": "2026-10-07"
   }
- ]
+ }
 }
