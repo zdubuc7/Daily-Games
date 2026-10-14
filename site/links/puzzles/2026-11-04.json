@@ -1,0 +1,40 @@
+{
+ "date": "2026-11-04",
+ "number": 29,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "zero",
+   "pin": "shop",
+   "ob": [
+    "head",
+    "book"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "sun",
+   "pin": "due",
+   "ob": [
+    "bun",
+    "hun",
+    "pun"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "rhyme",
+   "tee": "reputation",
+   "pin": "dump",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  }
+ ]
+}
