@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-05",
+ "number": 30,
+ "holes": [
+  {
+   "course": "borders",
+   "tee": "Bhutan",
+   "pin": "North Korea",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "states",
+   "tee": "North Carolina",
+   "pin": "Florida",
+   "ob": [
+    "Tennessee"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "borders",
+   "tee": "Uganda",
+   "pin": "Namibia",
+   "ob": [
+    "DR Congo"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-12"
+  }
+ ]
+}
