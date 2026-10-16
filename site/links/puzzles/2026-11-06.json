@@ -1,0 +1,44 @@
+{
+ "date": "2026-11-06",
+ "number": 31,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Vanessa Hudgens",
+   "pin": "Gwen Stefani",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Rod Stewart"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "studio",
+   "tee": "Frank Zappa",
+   "pin": "Louis Armstrong",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Ella Fitzgerald"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "studio",
+   "tee": "Chris Martin",
+   "pin": "Katy Perry",
+   "ob": [
+    "Kanye West",
+    "Nicki Minaj"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-12"
+  }
+ ]
+}
