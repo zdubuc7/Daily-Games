@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-07",
+ "number": 32,
+ "holes": [
+  {
+   "course": "pokedex",
+   "tee": "Buizel",
+   "pin": "Gulpin",
+   "ob": [
+    "Bibarel",
+    "Lotad",
+    "Lombre"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "smash",
+   "tee": "Kano",
+   "pin": "Poison Ivy",
+   "ob": [
+    "Batman",
+    "Raiden (Mortal Kombat)",
+    "The Joker"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Machop",
+   "pin": "Grovyle",
+   "ob": [
+    "Lotad",
+    "Lombre",
+    "Ludicolo"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  }
+ ]
+}
