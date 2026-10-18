@@ -1,0 +1,41 @@
+{
+ "date": "2026-11-08",
+ "number": 33,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "space",
+   "pin": "high",
+   "ob": [
+    "sea",
+    "ball",
+    "way"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "lap",
+   "pin": "sad",
+   "ob": [
+    "say",
+    "mad",
+    "pap"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "rhyme",
+   "tee": "strike",
+   "pin": "kinds",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-12"
+  }
+ ]
+}
