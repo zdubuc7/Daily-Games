@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-09",
+ "number": 34,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "Reggie Wayne",
+   "pin": "Aaron Donald",
+   "ob": [
+    "Nick Vannett",
+    "Caraun Reid",
+    "Matthew Mulligan"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Andre Tippett",
+   "pin": "Fred Warner",
+   "ob": [
+    "Shayne Graham",
+    "J.T. O'Sullivan",
+    "DeAndre Carter"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Mike Alstott",
+   "pin": "Troy Polamalu",
+   "ob": [
+    "Nick Vannett",
+    "Kwon Alexander",
+    "Mike Glennon"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-12"
+  }
+ ]
+}
