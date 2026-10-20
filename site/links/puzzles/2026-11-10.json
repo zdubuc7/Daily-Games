@@ -1,0 +1,44 @@
+{
+ "date": "2026-11-10",
+ "number": 35,
+ "holes": [
+  {
+   "course": "hollywood",
+   "tee": "Christina Ricci",
+   "pin": "Hrithik Roshan",
+   "ob": [
+    "Samuel L. Jackson",
+    "Keanu Reeves",
+    "Shah Rukh Khan"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "primetime",
+   "tee": "Severance",
+   "pin": "11.22.63",
+   "ob": [
+    "Party Down",
+    "Freaks and Geeks"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "marvel",
+   "tee": "Goose",
+   "pin": "Loki",
+   "ob": [
+    "Nick Fury",
+    "Happy Hogan",
+    "Bruce Banner"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  }
+ ]
+}
