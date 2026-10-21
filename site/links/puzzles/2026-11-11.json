@@ -1,0 +1,36 @@
+{
+ "date": "2026-11-11",
+ "number": 36,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "fall",
+   "pin": "lay",
+   "ob": [
+    "man",
+    "land"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "roll",
+   "pin": "fill",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "rhyme",
+   "tee": "done",
+   "pin": "worth",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  }
+ ]
+}
