@@ -1,0 +1,38 @@
+{
+ "date": "2026-11-12",
+ "number": 37,
+ "holes": [
+  {
+   "course": "states",
+   "tee": "Delaware",
+   "pin": "Michigan",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "borders",
+   "tee": "Lebanon",
+   "pin": "Iraq",
+   "ob": [
+    "Turkey"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "states",
+   "tee": "Virginia",
+   "pin": "Georgia",
+   "ob": [
+    "Tennessee",
+    "Kentucky"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  }
+ ]
+}
