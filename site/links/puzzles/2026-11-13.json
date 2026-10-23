@@ -1,0 +1,44 @@
+{
+ "date": "2026-11-13",
+ "number": 38,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Paul McCartney",
+   "pin": "Johnny Hallyday",
+   "ob": [
+    "Bing Crosby",
+    "Ella Fitzgerald",
+    "Rod Stewart"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "studio",
+   "tee": "Sting",
+   "pin": "John Lennon",
+   "ob": [
+    "Rod Stewart",
+    "Paul McCartney"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "studio",
+   "tee": "Justin Timberlake",
+   "pin": "David Bowie",
+   "ob": [
+    "Bing Crosby",
+    "Carola Häggkvist",
+    "Dolly Parton"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  }
+ ]
+}
