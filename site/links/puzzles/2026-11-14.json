@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-14",
+ "number": 39,
+ "holes": [
+  {
+   "course": "smash",
+   "tee": "The Penguin",
+   "pin": "Spawn",
+   "ob": [
+    "Batman",
+    "Raiden (Mortal Kombat)",
+    "The Joker"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Grumpig",
+   "pin": "Jolteon",
+   "ob": [
+    "Slowpoke",
+    "Slowbro",
+    "Starmie"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "smash",
+   "tee": "Miles Morales",
+   "pin": "Rocket Raccoon",
+   "ob": [
+    "Wolverine",
+    "Spider-Man",
+    "Deadpool"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  }
+ ]
+}
