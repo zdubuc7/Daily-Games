@@ -1,0 +1,41 @@
+{
+ "date": "2026-11-15",
+ "number": 40,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "print",
+   "pin": "house",
+   "ob": [
+    "water",
+    "hand",
+    "fire"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "per",
+   "pin": "bad",
+   "ob": [
+    "mad",
+    "bay",
+    "tad"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "rhyme",
+   "tee": "stock",
+   "pin": "letters",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  }
+ ]
+}
