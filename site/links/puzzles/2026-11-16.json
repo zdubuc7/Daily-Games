@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-16",
+ "number": 41,
+ "holes": [
+  {
+   "course": "gridiron",
+   "tee": "Dermontti Dawson",
+   "pin": "Geno Atkins",
+   "ob": [
+    "Joshua Dobbs",
+    "Cassius Marsh",
+    "Gus Frerotte"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Cameron Jordan",
+   "pin": "Jim Kelly",
+   "ob": [
+    "Josh Johnson",
+    "Mark Royals",
+    "Tyrod Taylor"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  },
+  {
+   "course": "gridiron",
+   "tee": "Larry Fitzgerald",
+   "pin": "Harrison Smith",
+   "ob": [
+    "T.Y. McGill",
+    "Matthew Mulligan",
+    "Tom Compton"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-19"
+  }
+ ]
+}
