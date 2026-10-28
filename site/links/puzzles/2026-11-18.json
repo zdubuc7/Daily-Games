@@ -1,0 +1,33 @@
+{
+ "date": "2026-11-18",
+ "number": 43,
+ "holes": [
+  {
+   "course": "compound",
+   "tee": "wall",
+   "pin": "port",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-07"
+  },
+  {
+   "course": "ladder",
+   "tee": "pool",
+   "pin": "wood",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "rhyme",
+   "tee": "unknown",
+   "pin": "brought",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  }
+ ]
+}
