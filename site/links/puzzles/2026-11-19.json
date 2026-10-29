@@ -1,0 +1,36 @@
+{
+ "date": "2026-11-19",
+ "number": 44,
+ "holes": [
+  {
+   "course": "borders",
+   "tee": "South Africa",
+   "pin": "Angola",
+   "ob": [
+    "Zambia",
+    "Mozambique"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "states",
+   "tee": "Wisconsin",
+   "pin": "North Dakota",
+   "ob": [],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "borders",
+   "tee": "Nigeria",
+   "pin": "Ethiopia",
+   "ob": [],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-26"
+  }
+ ]
+}
