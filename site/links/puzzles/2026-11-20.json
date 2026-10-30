@@ -1,0 +1,44 @@
+{
+ "date": "2026-11-20",
+ "number": 45,
+ "holes": [
+  {
+   "course": "studio",
+   "tee": "Lady Gaga",
+   "pin": "Bonnie Tyler",
+   "ob": [
+    "Tony Bennett",
+    "Beyoncé"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "studio",
+   "tee": "Bob Dylan",
+   "pin": "Vladimir Vysotsky",
+   "ob": [
+    "Frank Sinatra",
+    "Bing Crosby",
+    "Ella Fitzgerald"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "studio",
+   "tee": "Alicia Keys",
+   "pin": "Lionel Richie",
+   "ob": [
+    "Nicki Minaj",
+    "Drake",
+    "JAŸ‐Z"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-26"
+  }
+ ]
+}
