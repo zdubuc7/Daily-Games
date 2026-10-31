@@ -1,0 +1,43 @@
+{
+ "date": "2026-11-21",
+ "number": 46,
+ "holes": [
+  {
+   "course": "pokedex",
+   "tee": "Tangela",
+   "pin": "Deoxys",
+   "ob": [
+    "Lotad",
+    "Lombre",
+    "Ludicolo"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "smash",
+   "tee": "Jin Kazama",
+   "pin": "Scarlet Witch",
+   "ob": [
+    "Geese Howard"
+   ],
+   "shortest": 3,
+   "par": 5,
+   "v": "2026-10-26"
+  },
+  {
+   "course": "pokedex",
+   "tee": "Dugtrio",
+   "pin": "Golduck",
+   "ob": [
+    "Bibarel",
+    "Lotad",
+    "Lombre"
+   ],
+   "shortest": 2,
+   "par": 4,
+   "v": "2026-10-26"
+  }
+ ]
+}
